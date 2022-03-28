@@ -1,8 +1,8 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export type LazyLoadProps = {
-  readonly render: (isVisible: boolean) => ReactNode;
-  readonly forceVisible: boolean;
+  readonly render: (isVisible: boolean) => JSX.Element | null;
+  readonly forceVisible?: boolean;
   readonly visibleCallback?: Function;
 } & IntersectionObserverInit;
 
@@ -12,7 +12,7 @@ export default function LazyLoad({
   root,
   rootMargin,
   threshold,
-}: LazyLoadProps): ReactNode {
+}: LazyLoadProps): ReturnType<typeof render> {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
   const ref = useRef();
