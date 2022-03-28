@@ -1,0 +1,19 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+#scrollList {
+  height: 500px;
+  width: 300px;
+  border: solid 1px #c0c0c0;
+  overflow-y: scroll;
+}
+
+.row {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: solid 1px #eeeeee;
+}
