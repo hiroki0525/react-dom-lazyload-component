@@ -5,6 +5,7 @@ export type LazyLoadProps = {
   as?: ElementType;
   forceVisible?: boolean;
   rootSelectorId?: string;
+  className?: string | null;
 } & Omit<IntersectionObserverInit, 'root'>;
 
 export default function LazyLoad({
@@ -14,6 +15,7 @@ export default function LazyLoad({
   rootMargin,
   threshold,
   as: Tag = 'div',
+  className = null,
 }: Readonly<LazyLoadProps>): ReturnType<typeof render> {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
@@ -59,5 +61,9 @@ export default function LazyLoad({
     }
   }, [targetRef.current, rootRef.current]);
 
-  return <Tag ref={targetRef}>{render(isVisible)}</Tag>;
+  return (
+    <Tag ref={targetRef} className={className}>
+      {render(isVisible)}
+    </Tag>
+  );
 }
