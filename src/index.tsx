@@ -1,31 +1,40 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, ElementType } from 'react';
 
 export type LazyLoadProps = {
-  readonly render: (isVisible: boolean) => JSX.Element | null;
-  readonly forceVisible?: boolean;
-  readonly visibleCallback?: Function;
-} & IntersectionObserverInit;
+  render: (isVisible: boolean) => JSX.Element | null;
+  as?: ElementType;
+  forceVisible?: boolean;
+  rootSelectorId?: string;
+} & Omit<IntersectionObserverInit, 'root'>;
 
 export default function LazyLoad({
   render,
   forceVisible = false,
-  root,
+  rootSelectorId,
   rootMargin,
   threshold,
-}: LazyLoadProps): ReturnType<typeof render> {
+  as: Tag = 'div',
+}: Readonly<LazyLoadProps>): ReturnType<typeof render> {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
-  const ref = useRef();
+  const rootRef = useRef<HTMLElement | null>();
+  const targetRef = useRef<HTMLElement | null>();
+
+  useEffect(() => {
+    if (rootSelectorId) {
+      rootRef.current = document.getElementById(rootSelectorId);
+    }
+  }, []);
 
   useEffect(() => {
     setIsVisible(forceVisible);
   }, [forceVisible]);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = targetRef.current;
     if (el) {
       const options = {
-        root,
+        root: rootRef.current,
         rootMargin,
         threshold,
       };
@@ -48,7 +57,7 @@ export default function LazyLoad({
         observer.disconnect();
       };
     }
-  }, [ref.current]);
+  }, [targetRef.current, rootRef.current]);
 
-  return render(isVisible);
+  return <Tag ref={targetRef}>{render(isVisible)}</Tag>;
 }
