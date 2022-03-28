@@ -1,0 +1,35 @@
+{
+  "name": "react-lazyload-component",
+  "version": "0.0.1",
+  "description": "React Lazy Load Component for your Website Performance",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiroki0525/react-lazyload-component.git"
+  },
+  "keywords": [
+    "React"
+  ],
+  "author": "Hiroki Miyaji",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hiroki0525/react-lazyload-component/issues"
+  },
+  "homepage": "https://github.com/hiroki0525/react-lazyload-component#readme",
+  "devDependencies": {
+    "@testing-library/react": "^12.1.4",
+    "@types/jest": "^27.4.1",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^17.0.14",
+    "jest": "^27.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "ts-loader": "^9.2.8",
+    "typescript": "^4.6.3",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  }
+}
