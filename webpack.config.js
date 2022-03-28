@@ -1,6 +1,13 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+// HTMLファイルのビルド設定
+const htmlWebpackPlugin = new HtmlWebpackPlugin({
+  template: path.join(__dirname, 'examples/index.html'),
+  filename: './index.html',
+});
+
 module.exports = {
-  mode: 'development',
-  entry: './src/index.tsx',
+  entry: path.join(__dirname, 'examples/index.tsx'),
   output: {
     path: `${__dirname}/dist`,
     filename: 'main.js',
@@ -11,10 +18,18 @@ module.exports = {
         test: /\.tsx?$/,
         use: 'ts-loader',
       },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+      },
     ],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
   target: ['web', 'es5'],
+  plugins: [htmlWebpackPlugin],
+  devServer: {
+    port: 3001,
+  },
 };

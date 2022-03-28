@@ -4,6 +4,7 @@
   "description": "React Lazy Load Component for your Website Performance",
   "main": "index.js",
   "scripts": {
+    "examples": "webpack-dev-server --mode development",
     "test": "test"
   },
   "repository": {

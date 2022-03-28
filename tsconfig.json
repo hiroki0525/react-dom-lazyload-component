@@ -3,8 +3,9 @@
     "sourceMap": true,
     "target": "ES5",
     "module": "ES2015",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "moduleResolution": "node",
+    "strict": true,
     "lib": [
       "ES2020",
       "DOM"
