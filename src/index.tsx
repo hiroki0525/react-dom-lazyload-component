@@ -26,7 +26,7 @@ export default function LazyLoad({
     if (rootSelectorId) {
       rootRef.current = document.getElementById(rootSelectorId);
     }
-  }, []);
+  }, [rootSelectorId]);
 
   useEffect(() => {
     setIsVisible(forceVisible);
