@@ -4,3 +4,4 @@ node_modules
 # Editors
 .idea
 *.iml
+/dist/
