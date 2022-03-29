@@ -1,6 +1,5 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-// HTMLファイルのビルド設定
 const htmlWebpackPlugin = new HtmlWebpackPlugin({
   template: path.join(__dirname, 'examples/index.html'),
   filename: './index.html',
@@ -21,6 +20,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(jpg|png|ico)$/,
+        use: 'url-loader',
       },
     ],
   },
