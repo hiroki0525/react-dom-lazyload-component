@@ -1,5 +1,5 @@
 import { render } from 'react-dom';
-import LazyLoad from '../src';
+import LazyLoad from 'react-lazyload-component';
 import './index.css';
 
 const lazyLoadRender = (isVisible: boolean): JSX.Element => {
