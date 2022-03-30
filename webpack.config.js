@@ -7,6 +7,9 @@ module.exports = {
     path: `${__dirname}/dist`,
     filename: 'bundle.min.js',
   },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx'],
+  },
   module: {
     rules: [
       {
@@ -15,8 +18,6 @@ module.exports = {
       },
     ],
   },
-  resolve: {
-    extensions: ['.ts', '.tsx'],
-  },
+  externals: ['react', 'react-dom'],
   target: ['web', 'es6'],
 };
