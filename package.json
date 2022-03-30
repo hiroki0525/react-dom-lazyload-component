@@ -4,6 +4,7 @@
   "description": "React Lazy Load Component for your Website Performance",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "dev:examples": "webpack-dev-server --mode development --config webpack.config.example.js",
     "build:examples": "webpack --mode production --config webpack.config.example.js",
     "build:demo": "gh-pages -d dist/examples",
