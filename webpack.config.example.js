@@ -30,7 +30,7 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
   },
-  target: ['web', 'es5'],
+  target: ['web', 'es6'],
   plugins: [htmlWebpackPlugin],
   devServer: {
     port: 3001,
