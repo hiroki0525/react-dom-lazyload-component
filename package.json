@@ -4,10 +4,10 @@
   "description": "React Lazy Load Component for your Website Performance",
   "main": "index.js",
   "scripts": {
-    "examples": "webpack-dev-server --mode development",
-    "build": "webpack --mode production",
-    "deploy": "gh-pages -d dist/examples",
-    "publish-demo": "npm run build && npm run deploy",
+    "dev:examples": "webpack-dev-server --mode development --config webpack.config.example.js",
+    "build:examples": "webpack --mode production --config webpack.config.example.js",
+    "build:demo": "gh-pages -d dist/examples",
+    "deploy:demo": "npm run build:examples && npm run deploy:demo",
     "test": "jest"
   },
   "repository": {
