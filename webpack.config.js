@@ -5,7 +5,7 @@ module.exports = {
   entry: path.join(__dirname, 'src/index.tsx'),
   output: {
     path: `${__dirname}/dist`,
-    filename: 'main.js',
+    filename: 'bundle.min.js',
   },
   module: {
     rules: [
