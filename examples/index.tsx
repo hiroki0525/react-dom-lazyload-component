@@ -1,5 +1,6 @@
+import { StrictMode } from 'react';
 import { render } from 'react-dom';
-import LazyLoad from 'react-lazyload-component';
+import LazyLoad from '../src';
 import './index.css';
 
 const lazyLoadRender = (isVisible: boolean): JSX.Element => {
@@ -10,20 +11,22 @@ const rootSelectorId = 'scrollList';
 
 const App = () => {
   return (
-    <section>
-      <h1>Demo</h1>
-      <ul id={rootSelectorId}>
-        {[...Array(10)].map((_, index) => (
-          <LazyLoad
-            key={index}
-            render={lazyLoadRender}
-            rootSelectorId={rootSelectorId}
-            as='li'
-            className='row'
-          />
-        ))}
-      </ul>
-    </section>
+    <StrictMode>
+      <section>
+        <h1>Demo</h1>
+        <ul id={rootSelectorId}>
+          {[...Array(10)].map((_, index) => (
+            <LazyLoad
+              key={index}
+              render={lazyLoadRender}
+              rootSelectorId={rootSelectorId}
+              as='li'
+              className='row'
+            />
+          ))}
+        </ul>
+      </section>
+    </StrictMode>
   );
 };
 render(<App />, document.getElementById('root'));
