@@ -1,5 +1,5 @@
 import { StrictMode } from 'react';
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import LazyLoad from '../src';
 import './index.css';
 
@@ -29,4 +29,8 @@ const App = () => {
     </StrictMode>
   );
 };
-render(<App />, document.getElementById('root'));
+
+// @ts-ignore
+const root = createRoot(document.getElementById('root'));
+
+root.render(<App />);
