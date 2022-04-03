@@ -1,0 +1,10 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "react-dom-lazyload-component examples",
+  "main": "index.tsx",
+  "scripts": {
+  },
+  "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
+  "license": "ISC"
+}
