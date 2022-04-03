@@ -1,5 +1,5 @@
 {
-  "name": "react-lazyload-component",
+  "name": "react-dom-lazyload-component",
   "version": "0.0.1",
   "description": "React Lazy Load Component for your Website Performance",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/hiroki0525/react-lazyload-component.git"
+    "url": "git+https://github.com/hiroki0525/react-dom-lazyload-component.git"
   },
   "keywords": [
     "React"
@@ -27,9 +27,9 @@
   "author": "Hiroki Miyaji",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hiroki0525/react-lazyload-component/issues"
+    "url": "https://github.com/hiroki0525/react-dom-lazyload-component/issues"
   },
-  "homepage": "https://github.com/hiroki0525/react-lazyload-component#readme",
+  "homepage": "https://github.com/hiroki0525/react-dom-lazyload-component#readme",
   "devDependencies": {
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",

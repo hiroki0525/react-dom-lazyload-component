@@ -1,16 +1,16 @@
-# react-lazyload-component
+# react-dom-lazyload-component
 Coming soon...
 
 ## Install
 
 ```
-npm i react-lazyload-component
+npm i react-dom-lazyload-component
 ```
 
 or
 
 ```
-yarn add react-lazyload-component
+yarn add react-dom-lazyload-component
 ```
 
 ## Usage
@@ -18,7 +18,7 @@ yarn add react-lazyload-component
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import LazyLoad from 'react-lazyload-component';
+import LazyLoad from 'react-dom-lazyload-component';
 import { Header, Main, Footer, Loading } from './MyComponents';
 
 const App = () => (
@@ -58,4 +58,4 @@ ReactDOM.render(<App />, document.body);
 Please see [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#browser_compatibility).
 
 ## Demo
-https://hiroki0525.github.io/react-lazyload-component/
+https://hiroki0525.github.io/react-dom-lazyload-component/
