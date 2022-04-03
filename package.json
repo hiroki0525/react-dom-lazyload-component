@@ -1,6 +1,6 @@
 {
   "name": "react-lazyload-component",
-  "version": "0.0.1-experimental",
+  "version": "0.0.1",
   "description": "React Lazy Load Component for your Website Performance",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
