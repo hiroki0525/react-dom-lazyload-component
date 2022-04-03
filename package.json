@@ -8,7 +8,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "webpack",
+    "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "start:examples": "webpack-dev-server --open --mode development --config webpack.config.example.js",
     "build:examples": "webpack --mode production --config webpack.config.example.js",
     "build:demo": "gh-pages -d dist/examples",
