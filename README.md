@@ -1,5 +1,8 @@
 # react-dom-lazyload-component
-Coming soon...
+
+## Note
+
+Version 0.X.X is experimental, but you can use this library.
 
 ## Install
 
