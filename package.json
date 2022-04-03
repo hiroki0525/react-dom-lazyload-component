@@ -14,7 +14,8 @@
     "build:demo": "gh-pages -d dist/examples",
     "deploy:demo": "npm run build:examples && npm run deploy:demo",
     "test": "jest",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
   },
   "repository": {
     "type": "git",
