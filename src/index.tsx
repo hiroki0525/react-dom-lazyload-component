@@ -4,14 +4,14 @@ export type LazyLoadProps = {
   render: (isVisible: boolean) => JSX.Element | null;
   as?: ElementType;
   forceVisible?: boolean;
-  rootSelectorId?: string;
+  rootId?: string;
   [x: string]: any;
 } & Omit<IntersectionObserverInit, 'root'>;
 
 export default function LazyLoad({
   render,
   forceVisible = false,
-  rootSelectorId,
+  rootId,
   rootMargin,
   threshold,
   as: Tag = 'div',
@@ -23,10 +23,10 @@ export default function LazyLoad({
   const targetRef = useRef<HTMLElement | null>();
 
   useEffect(() => {
-    if (rootSelectorId) {
-      rootRef.current = document.getElementById(rootSelectorId);
+    if (rootId) {
+      rootRef.current = document.getElementById(rootId);
     }
-  }, [rootSelectorId]);
+  }, [rootId]);
 
   useEffect(() => {
     setIsVisible(forceVisible);

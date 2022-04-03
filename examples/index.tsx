@@ -7,19 +7,19 @@ const lazyLoadRender = (isVisible: boolean): JSX.Element => {
   return <>{isVisible ? 'Visible!!' : 'InVisible!!'}</>;
 };
 
-const rootSelectorId = 'scrollList';
+const rootId = 'scrollList';
 
 const App = () => {
   return (
     <StrictMode>
       <section>
         <h1>Demo</h1>
-        <ul id={rootSelectorId}>
+        <ul id={rootId}>
           {[...Array(10)].map((_, index) => (
             <LazyLoad
               key={index}
               render={lazyLoadRender}
-              rootSelectorId={rootSelectorId}
+              rootId={rootId}
               as='li'
               className='row'
             />
