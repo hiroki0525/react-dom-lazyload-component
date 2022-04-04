@@ -15,6 +15,7 @@
     "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "test": "jest",
     "lint": "eslint src/",
+    "prttier": "prttier src/",
     "clean": "rm -rf dist",
     "publish": "npm run build && npm publish --access=public"
   },
