@@ -8,6 +8,9 @@
     "dist"
   ],
   "scripts": {
+    "start:examples": "cd examples && npm run start",
+    "build:examples": "cd examples && npm run build",
+    "deploy:examples": "cd examples && npm run deploy",
     "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "install:local": "node scripts/install-local-package.mjs",
     "test": "jest",
