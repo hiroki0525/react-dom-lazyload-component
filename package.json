@@ -8,16 +8,19 @@
     "dist"
   ],
   "scripts": {
-    "start:examples": "cd examples && npm run start",
-    "build:examples": "cd examples && npm run build",
-    "deploy:examples": "cd examples && npm run deploy",
-    "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "install:local": "node scripts/install-local-package.mjs",
+    "start:examples": "npm run install:local && npm i -w examples && npm run -w examples start",
+    "build:examples": "npm run -w examples build",
+    "deploy:examples": "npm run -w examples deploy",
+    "build": "npm run clean && tsc && cp package.json README.md ./dist",
     "test": "jest",
     "lint": "eslint src/",
     "clean": "rm -rf dist",
     "publish": "npm run build && npm publish --access=public"
   },
+  "workspaces": [
+    "examples"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/hiroki0525/react-dom-lazyload-component.git"
