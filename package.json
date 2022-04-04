@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "build": "npm run clean && tsc && cp package.json README.md ./dist",
-    "pack:local": "node scripts/pack-local.mjs",
+    "install:local": "node scripts/install-local-package.mjs",
     "test": "jest",
     "lint": "eslint src/",
     "clean": "rm -rf dist",
