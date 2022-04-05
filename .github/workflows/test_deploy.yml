@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy:
+  test-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
