@@ -8,6 +8,4 @@ describe('LazyLoad', () => {
       expect(1 + 1).toBe(2);
     });
   });
-
-  describe('in view', () => {});
 });

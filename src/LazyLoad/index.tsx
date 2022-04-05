@@ -5,6 +5,7 @@ export type LazyLoadProps = {
   as?: ElementType;
   forceVisible?: boolean;
   rootId?: string;
+  // eslint-disable-next-line
   [x: string]: any;
 } & Omit<IntersectionObserverInit, 'root'>;
 
