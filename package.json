@@ -27,7 +27,7 @@
     "url": "git+https://github.com/hiroki0525/react-dom-lazyload-component.git"
   },
   "keywords": [
-    "React"
+    "React", "JavaScript", "TypeScript"
   ],
   "author": "Hiroki Miyaji",
   "license": "MIT",
