@@ -1,6 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import LazyLoad from '../src';
+import LazyLoad from 'react-dom-lazyload-component';
 import './index.css';
 
 const lazyLoadRender = (isVisible: boolean): JSX.Element => {

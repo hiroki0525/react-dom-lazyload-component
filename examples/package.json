@@ -26,6 +26,6 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "react-dom-lazyload-component": "file:tmp/react-dom-lazyload-component-0.0.2.tgz"
+    "react-dom-lazyload-component": "^0.0.3"
   }
 }

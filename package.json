@@ -12,7 +12,7 @@
     "start:examples": "npm run install:local && npm i -w examples && npm run -w examples start",
     "build:examples": "npm run -w examples build",
     "deploy:examples": "npm run -w examples deploy",
-    "build": "npm run clean && tsc && cp package.json README.md ./dist",
+    "build": "npm run clean && tsc",
     "test": "jest",
     "lint": "eslint src/",
     "prettier": "prettier src/",
