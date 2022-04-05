@@ -1,5 +1,7 @@
 # react-dom-lazyload-component
 
+[![npm version](https://badge.fury.io/js/react-dom-lazyload-component.svg)](https://badge.fury.io/js/react-dom-lazyload-component)
+
 ## Note
 
 Version 0.X.X is experimental, but you can use this library.
