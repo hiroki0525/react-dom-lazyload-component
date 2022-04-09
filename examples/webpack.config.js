@@ -6,7 +6,7 @@ const htmlWebpackPlugin = new HtmlWebpackPlugin({
 });
 
 module.exports = {
-  entry: path.join(__dirname, 'index.tsx'),
+  entry: path.join(__dirname, 'LazyLoad.tsx'),
   output: {
     path: `${__dirname}/dist/`,
     filename: 'bundle.min.js',
