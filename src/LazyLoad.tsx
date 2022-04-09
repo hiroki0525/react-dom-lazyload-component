@@ -24,11 +24,12 @@ export default function LazyLoad({
   const targetRef = useRef<HTMLElement>();
 
   useEffect(() => {
-    if (rootId) {
-      const rootElement = document.getElementById(rootId);
-      if (rootElement) {
-        rootRef.current = rootElement;
-      }
+    if (!rootId) {
+      return;
+    }
+    const rootElement = document.getElementById(rootId);
+    if (rootElement) {
+      rootRef.current = rootElement;
     }
   }, [rootId]);
 
