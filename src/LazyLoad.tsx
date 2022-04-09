@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState, ElementType } from 'react';
+import { useEffect, useRef, useState, ElementType, ReactNode } from 'react';
 
 export type LazyLoadProps = {
-  render: (isVisible: boolean) => JSX.Element | null;
+  render: (isVisible: boolean) => ReactNode;
   as?: ElementType;
   forceVisible?: boolean;
   rootId?: string;
@@ -17,7 +17,7 @@ export default function LazyLoad({
   threshold,
   as: Tag = 'div',
   ...props
-}: Readonly<LazyLoadProps>): ReturnType<typeof render> {
+}: Readonly<LazyLoadProps>): JSX.Element {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
   const rootRef = useRef<HTMLElement>();
