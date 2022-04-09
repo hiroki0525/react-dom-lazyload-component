@@ -20,12 +20,15 @@ export default function LazyLoad({
 }: Readonly<LazyLoadProps>): ReturnType<typeof render> {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
-  const rootRef = useRef<HTMLElement | null>();
-  const targetRef = useRef<HTMLElement | null>();
+  const rootRef = useRef<HTMLElement>();
+  const targetRef = useRef<HTMLElement>();
 
   useEffect(() => {
     if (rootId) {
-      rootRef.current = document.getElementById(rootId);
+      const rootElement = document.getElementById(rootId);
+      if (rootElement) {
+        rootRef.current = rootElement;
+      }
     }
   }, [rootId]);
 
