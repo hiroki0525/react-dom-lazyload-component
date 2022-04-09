@@ -38,31 +38,29 @@ export default function LazyLoad({
 
   useEffect(() => {
     const el = targetRef.current;
-    if (el) {
-      const options = {
-        root: rootRef.current,
-        rootMargin,
-        threshold,
-      };
-      const checkInViewportAndShow: IntersectionObserverCallback = (
-        entries,
-        observer
-      ) => {
-        const entry = entries[0];
-        if (entry.isIntersecting) {
-          show();
-          observer.disconnect();
-        }
-      };
-      const observer = new IntersectionObserver(
-        checkInViewportAndShow,
-        options
-      );
-      observer.observe(el);
-      return () => {
-        observer.disconnect();
-      };
+    if (!el) {
+      return;
     }
+    const options = {
+      root: rootRef.current,
+      rootMargin,
+      threshold,
+    };
+    const checkInViewportAndShow: IntersectionObserverCallback = (
+      entries,
+      observer
+    ) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        show();
+        observer.disconnect();
+      }
+    };
+    const observer = new IntersectionObserver(checkInViewportAndShow, options);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+    };
   }, [targetRef, rootRef]);
 
   return (
