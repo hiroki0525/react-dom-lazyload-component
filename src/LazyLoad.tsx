@@ -17,7 +17,7 @@ export default function LazyLoad({
   threshold,
   as: Tag = 'div',
   ...props
-}: Readonly<LazyLoadProps>): JSX.Element {
+}: LazyLoadProps): JSX.Element {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const show = () => setIsVisible(true);
   const rootRef = useRef<HTMLElement>();
