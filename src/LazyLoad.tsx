@@ -63,7 +63,7 @@ export default function LazyLoad({
         observer.disconnect();
       };
     }
-  }, [targetRef.current, rootRef.current]);
+  }, [targetRef, rootRef]);
 
   return (
     <Tag ref={targetRef} {...props}>
