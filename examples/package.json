@@ -11,8 +11,8 @@
   "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/react": "^17.0.43",
-    "@types/react-dom": "^17.0.14",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
     "gh-pages": "^3.2.3",
@@ -26,6 +26,6 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "react-dom-lazyload-component": "^0.0.4"
+    "react-dom-lazyload-component": "file:tmp/react-dom-lazyload-component-0.0.4.tgz"
   }
 }
