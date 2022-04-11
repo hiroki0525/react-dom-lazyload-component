@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import LazyLoad from 'react-dom-lazyload-component';
 import './index.css';
 
-const lazyLoadRender = (isVisible: boolean): JSX.Element => {
-  return <>{isVisible ? 'Visible!!' : 'InVisible!!'}</>;
+const lazyLoadRender = (isVisible: boolean): string => {
+  return isVisible ? 'Visible!!' : 'InVisible!!';
 };
 
 const rootId = 'scrollList';
