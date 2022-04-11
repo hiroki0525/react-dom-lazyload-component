@@ -30,7 +30,12 @@ const App = () => {
   );
 };
 
-// @ts-ignore
-const root = createRoot(document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+if (!rootElement) {
+  throw new Error('root element cannot be found.');
+}
+
+const root = createRoot(rootElement);
 
 root.render(<App />);
