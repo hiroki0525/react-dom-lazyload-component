@@ -1,5 +1,5 @@
 import { cleanup, screen, render } from '@testing-library/react';
-import LazyLoad, { LazyLoadProps } from '../LazyLoad';
+import LazyLoad, { LazyLoadProps } from '../index';
 
 describe('LazyLoad', () => {
   const observe = jest.fn();
