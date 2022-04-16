@@ -18,13 +18,16 @@ jobs:
           node-version: '14'
           cache: npm
       - name: Install Dependencies
-        run: npm i --workspaces
+        run: npm ci --workspaces
       - name: Test
         run: |
           npm run test && npm run lint && npm run prettier
+      - name: Build
+        run: npm run build
       - name: Deploy
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
-          npm run deploy
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release
+#          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+#          npm run deploy
