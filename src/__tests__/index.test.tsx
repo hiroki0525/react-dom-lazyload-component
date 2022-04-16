@@ -27,7 +27,7 @@ describe('LazyLoad', () => {
 
   afterEach(() => {
     cleanup();
-    mockIntersectionObserver.mockClear();
+    jest.clearAllMocks();
   });
 
   describe('initial render', () => {
