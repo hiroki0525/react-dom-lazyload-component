@@ -7,24 +7,40 @@ const lazyLoadRender = (isVisible: boolean): string => {
   return isVisible ? 'Visible!!' : 'InVisible!!';
 };
 
-const rootId = 'scrollList';
-
 const App = () => {
   return (
     <StrictMode>
       <section>
         <h1>Demo</h1>
-        <ul id={rootId}>
-          {[...Array(10)].map((_, index) => (
-            <LazyLoad
-              key={index}
-              render={lazyLoadRender}
-              rootId={rootId}
-              as='li'
-              className='row'
-            />
-          ))}
-        </ul>
+        <section>
+          <h2>once is true</h2>
+          <ul id='demo1' className='scrollList'>
+            {[...Array(10)].map((_, index) => (
+              <LazyLoad
+                key={`demo1-${index}`}
+                render={lazyLoadRender}
+                rootId='demo1'
+                as='li'
+                className='row'
+              />
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h2>once is false</h2>
+          <ul id='demo2' className='scrollList'>
+            {[...Array(10)].map((_, index) => (
+              <LazyLoad
+                key={`demo2-${index}`}
+                render={lazyLoadRender}
+                rootId='demo2'
+                as='li'
+                className='row'
+                once={false}
+              />
+            ))}
+          </ul>
+        </section>
       </section>
     </StrictMode>
   );

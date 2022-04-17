@@ -5,6 +5,7 @@ export type LazyLoadProps = {
   as?: ElementType;
   forceVisible?: boolean;
   rootId?: string;
+  once?: boolean;
   // eslint-disable-next-line
   [x: string]: any;
 } & Omit<IntersectionObserverInit, 'root'>;
@@ -15,11 +16,11 @@ export default function LazyLoad({
   rootId,
   rootMargin,
   threshold,
+  once = true,
   as: Tag = 'div',
   ...props
 }: LazyLoadProps): JSX.Element {
   const [isVisible, setIsVisible] = useState(forceVisible);
-  const show = () => setIsVisible(true);
   const rootRef = useRef<HTMLElement>();
   const targetRef = useRef<HTMLElement>();
 
@@ -53,8 +54,11 @@ export default function LazyLoad({
     ) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
-        show();
-        observer.disconnect();
+        setIsVisible(true);
+        once && observer.disconnect();
+      } else {
+        once || setIsVisible(false);
+        console.log(isVisible);
       }
     };
     const observer = new IntersectionObserver(checkInViewportAndShow, options);

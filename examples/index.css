@@ -3,7 +3,7 @@ ul {
   padding: 0;
 }
 
-#scrollList {
+.scrollList {
   height: 500px;
   width: 300px;
   border: solid 1px #c0c0c0;
