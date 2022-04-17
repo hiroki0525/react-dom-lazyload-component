@@ -27,7 +27,7 @@ jobs:
       - name: Deploy
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: npx semantic-release
 #          echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
 #          npm run deploy
