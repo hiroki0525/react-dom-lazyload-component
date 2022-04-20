@@ -16,8 +16,7 @@
     "test": "jest",
     "lint": "eslint src/",
     "prettier": "prettier src/",
-    "clean": "rm -rf dist",
-    "deploy": "npm run build && npm publish --access=public"
+    "clean": "rm -rf dist"
   },
   "workspaces": [
     "examples"
