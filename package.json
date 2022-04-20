@@ -16,8 +16,7 @@
     "test": "jest",
     "lint": "eslint src/",
     "prettier": "prettier src/",
-    "clean": "rm -rf dist",
-    "deploy": "npm run build && npm publish --access=public"
+    "clean": "rm -rf dist"
   },
   "workspaces": [
     "examples"
@@ -41,6 +40,7 @@
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@commitlint/cli": "^16.2.3",
+    "@commitlint/config-angular": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/commit-analyzer": "^9.0.2",
@@ -89,15 +89,5 @@
     "branches": [
       "main"
     ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   }
 }

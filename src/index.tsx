@@ -58,7 +58,6 @@ export default function LazyLoad({
         once && observer.disconnect();
       } else {
         once || setIsVisible(false);
-        console.log(isVisible);
       }
     };
     const observer = new IntersectionObserver(checkInViewportAndShow, options);
