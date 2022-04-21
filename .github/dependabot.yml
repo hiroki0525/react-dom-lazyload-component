@@ -5,8 +5,12 @@ updates:
     target-branch: "develop"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "build(deps): "
   - package-ecosystem: "npm"
     target-branch: "develop"
     directory: "/"
     schedule:
       interval: "weekly"
+    commit-message:
+      prefix: "build(deps): "
