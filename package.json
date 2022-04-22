@@ -7,6 +7,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "link": "/bin/bash scripts/link-to-example.sh",
     "unlink": "/bin/bash scripts/link-to-example.sh unlink",
