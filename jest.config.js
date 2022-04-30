@@ -1,10 +1,8 @@
 module.exports = {
   roots: ['<rootDir>/src'],
-  testEnvironment: 'jsdom',
-  testMatch: [
-    '**/*\\.test\\.tsx',
-  ],
+  testMatch: ['**/*\\.test\\.tsx'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
+  preset: 'jest-puppeteer',
 };
