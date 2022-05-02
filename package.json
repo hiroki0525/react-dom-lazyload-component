@@ -9,7 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "link": "/bin/bash scripts/link-to-example.sh",
+    "link": "/bin/bash scripts/link-to-example.sh link",
     "unlink": "/bin/bash scripts/link-to-example.sh unlink",
     "start:examples:local-pkg": "npm uninstall react-dom-lazyload-component -w examples ; npm run link && npm run -w examples start",
     "start:examples:remote-pkg": "npm run unlink && npm i react-dom-lazyload-component -w examples && npm i  && npm i && npm run -w examples start",
