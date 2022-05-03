@@ -9,11 +9,8 @@
   ],
   "sideEffects": false,
   "scripts": {
-    "install:local": "node scripts/install-local-package.mjs",
-    "setup:local": "npm uninstall react-dom-lazyload-component -w examples ; scripts/link-to-example.sh link",
-    "setup:remote": "scripts/link-to-example.sh unlink && npm i react-dom-lazyload-component -w examples && npm i",
-    "start:examples:local-pkg": "npm run setup:local && npm run -w examples start",
-    "start:examples:remote-pkg": "npm run setup:remote && npm run -w examples start",
+    "pack": "node scripts/create-local-package.mjs",
+    "start:examples": "npm run pack && npm run -w examples start",
     "build:examples": "npm run -w examples build",
     "deploy:examples": "npm run -w examples deploy",
     "build": "npm run clean && tsc",
