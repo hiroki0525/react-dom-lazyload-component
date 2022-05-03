@@ -18,6 +18,7 @@ describe('Browser', () => {
     const invisibleText = 'Invisible';
     let lazyLoadTexts: (string | null)[] = [];
     const setLazyLoadTexts = async (selectorId: string): Promise<void> => {
+      await page.waitForSelector(selectorId);
       lazyLoadTexts = await page.$$eval(`${selectorId} > li`, items =>
         items.map(({ textContent }) => textContent)
       );
