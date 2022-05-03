@@ -25,7 +25,7 @@ const exportDir = `./${baseDir}/${tmpDir}`;
       }
       await fs.copyFile(packageName, `${exportDir}/${packageName}`);
       exec(
-        `cd ${baseDir} && npm i ./${tmpDir}/${packageName}`,
+        `npm i -w ${baseDir} ./${exportDir}/${packageName}`,
         async (error, stdout, stderr) => {
           if (error) {
             throw new Error(stderr);
