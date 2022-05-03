@@ -9,6 +9,7 @@
   ],
   "sideEffects": false,
   "scripts": {
+    "install:local": "node scripts/install-local-package.mjs",
     "setup:local": "npm uninstall react-dom-lazyload-component -w examples ; scripts/link-to-example.sh link",
     "setup:remote": "npm run unlink && npm i react-dom-lazyload-component -w examples && npm i",
     "start:examples:local-pkg": "npm run setup:local && npm run -w examples start",
@@ -16,7 +17,7 @@
     "build:examples": "npm run -w examples build",
     "deploy:examples": "npm run -w examples deploy",
     "build": "npm run clean && tsc",
-    "pretest": "npm run setup:local",
+    "pretest": "npm run install:local",
     "test": "jest",
     "lint": "eslint src/",
     "prettier": "prettier src/",
