@@ -30,6 +30,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    symlinks: false,
   },
   target: ['web', 'es6'],
   plugins: [htmlWebpackPlugin],
