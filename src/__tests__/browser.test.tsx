@@ -32,6 +32,7 @@ describe('Browser', () => {
         rowHeight,
         itemsLength
       );
+      await page.waitForTimeout(2000);
     };
     const getVisibleTexts = (): typeof lazyLoadTexts =>
       lazyLoadTexts.filter(text => text === visibleText);
