@@ -4,10 +4,6 @@ describe('Browser', () => {
   jest.setTimeout(10000);
 
   beforeAll(async () => {
-    page.on('console', msg => console.log('PAGE LOG:', msg.text()));
-    page.on('pageerror', error => {
-      console.log(error.message);
-    });
     await page.goto('http://localhost:3001', { waitUntil: 'networkidle0' });
   });
 
