@@ -57,14 +57,14 @@ describe('Browser', () => {
           await setLazyLoadTexts(rootId);
         });
 
-        it('visible item is 7', () => {
+        it('visible item is 8', () => {
           const visibleTexts = getVisibleTexts();
-          expect(visibleTexts.length).toBe(7);
+          expect(visibleTexts.length).toBe(8);
         });
 
-        it('invisible item is 3', () => {
+        it('invisible item is 2', () => {
           const invisibleTexts = getInvisibleTexts();
-          expect(invisibleTexts.length).toBe(3);
+          expect(invisibleTexts.length).toBe(2);
         });
 
         describe('scroll up', () => {
@@ -73,14 +73,14 @@ describe('Browser', () => {
             await setLazyLoadTexts(rootId);
           });
 
-          it('visible item is 7', () => {
+          it('visible item is 8', () => {
             const visibleTexts = getVisibleTexts();
-            expect(visibleTexts.length).toBe(7);
+            expect(visibleTexts.length).toBe(8);
           });
 
-          it('invisible item is 3', () => {
+          it('invisible item is 2', () => {
             const invisibleTexts = getInvisibleTexts();
-            expect(invisibleTexts.length).toBe(3);
+            expect(invisibleTexts.length).toBe(2);
           });
         });
       });
@@ -105,14 +105,14 @@ describe('Browser', () => {
           await setLazyLoadTexts(rootId);
         });
 
-        it('visible item is 5', () => {
+        it('visible item is 6', () => {
           const visibleTexts = getVisibleTexts();
-          expect(visibleTexts.length).toBe(5);
+          expect(visibleTexts.length).toBe(6);
         });
 
-        it('invisible item is 5', () => {
+        it('invisible item is 4', () => {
           const invisibleTexts = getInvisibleTexts();
-          expect(invisibleTexts.length).toBe(5);
+          expect(invisibleTexts.length).toBe(4);
         });
 
         describe('scroll up', () => {
@@ -121,14 +121,14 @@ describe('Browser', () => {
             await setLazyLoadTexts(rootId);
           });
 
-          it('visible item is 5', () => {
+          it('visible item is 6', () => {
             const visibleTexts = getVisibleTexts();
-            expect(visibleTexts.length).toBe(5);
+            expect(visibleTexts.length).toBe(6);
           });
 
-          it('invisible item is 5', () => {
+          it('invisible item is 4', () => {
             const invisibleTexts = getInvisibleTexts();
-            expect(invisibleTexts.length).toBe(5);
+            expect(invisibleTexts.length).toBe(4);
           });
         });
       });
