@@ -17,7 +17,7 @@
     "build:examples": "npm run -w examples build",
     "deploy:examples": "npm run -w examples deploy",
     "build": "npm run clean && tsc",
-    "test": "jest",
+    "test": "jest --runInBand",
     "lint": "eslint src/",
     "prettier": "prettier src/",
     "clean": "rm -rf dist"
