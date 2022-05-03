@@ -31,7 +31,7 @@ const App = () => (
         <LazyLoad
           as='footer'
           render={(isVisible) => isVisible ? <Footer /> : <Loading />}
-          rootMargin: '200px 0px'
+          rootMargin='200px 0px'
         />
     </>
 )
