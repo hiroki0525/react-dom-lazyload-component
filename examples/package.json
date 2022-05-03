@@ -4,9 +4,10 @@
   "description": "react-dom-lazyload-component examples",
   "main": "index.tsx",
   "scripts": {
-    "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production",
-    "deploy": "npm run build && gh-pages -d dist"
+    "start": "webpack-dev-server --mode development",
+    "build": "npm run clean && webpack --mode production",
+    "deploy": "npm run build && gh-pages -d dist",
+    "clean": "rm -rf dist"
   },
   "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
   "license": "ISC",
@@ -23,6 +24,6 @@
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "react-dom-lazyload-component": "^1.0.0"
+    "react-dom-lazyload-component": "file:../examples/react-dom-lazyload-component-1.0.0.tgz"
   }
 }

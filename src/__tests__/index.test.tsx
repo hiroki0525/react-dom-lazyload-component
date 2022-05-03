@@ -1,3 +1,7 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import { cleanup, screen, render } from '@testing-library/react';
 import LazyLoad, { LazyLoadProps } from '../index';
 
@@ -56,7 +60,10 @@ describe('LazyLoad', () => {
 
       describe('forceVisible is true', () => {
         it('visible', () => {
-          const props: LazyLoadProps = { ...defaultProps, forceVisible: true };
+          const props: LazyLoadProps = {
+            ...defaultProps,
+            forceVisible: true,
+          };
           const { getByText } = render(<LazyLoad {...props} />);
           expect(getByText(visibleText)).toBeDefined();
         });
