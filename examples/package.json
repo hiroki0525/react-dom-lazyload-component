@@ -22,5 +22,8 @@
     "webpack": "^5.71.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "react-dom-lazyload-component": "file:../examples/react-dom-lazyload-component-1.0.0.tgz"
   }
 }

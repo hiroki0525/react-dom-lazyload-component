@@ -6,4 +6,3 @@ node_modules
 *.iml
 /dist/
 /examples/dist/
-/examples/tmp/

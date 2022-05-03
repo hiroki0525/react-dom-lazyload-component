@@ -17,7 +17,6 @@
     "build:examples": "npm run -w examples build",
     "deploy:examples": "npm run -w examples deploy",
     "build": "npm run clean && tsc",
-    "pretest": "npm run install:local",
     "test": "jest",
     "lint": "eslint src/",
     "prettier": "prettier src/",
