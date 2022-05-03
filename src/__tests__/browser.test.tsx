@@ -53,7 +53,7 @@ describe('Browser', () => {
 
       describe('scroll down', () => {
         beforeAll(async () => {
-          await scrollList(rootId, 2);
+          await scrollList(rootId, 2.5);
           await setLazyLoadTexts(rootId);
         });
 
@@ -69,7 +69,7 @@ describe('Browser', () => {
 
         describe('scroll up', () => {
           beforeAll(async () => {
-            await scrollList(rootId, 3 / 2);
+            await scrollList(rootId, 1.5);
             await setLazyLoadTexts(rootId);
           });
 
@@ -101,7 +101,7 @@ describe('Browser', () => {
 
       describe('scroll down', () => {
         beforeAll(async () => {
-          await scrollList(rootId, 2);
+          await scrollList(rootId, 2.5);
           await setLazyLoadTexts(rootId);
         });
 
@@ -117,7 +117,7 @@ describe('Browser', () => {
 
         describe('scroll up', () => {
           beforeAll(async () => {
-            await scrollList(rootId, 3 / 2);
+            await scrollList(rootId, 1.5);
             await setLazyLoadTexts(rootId);
           });
 
