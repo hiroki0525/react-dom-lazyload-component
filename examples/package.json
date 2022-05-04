@@ -1,29 +1,26 @@
 {
-  "name": "examples",
-  "version": "1.0.0",
-  "description": "react-dom-lazyload-component examples",
-  "main": "index.tsx",
-  "scripts": {
-    "start": "webpack-dev-server --mode development",
-    "build": "npm run clean && webpack --mode production",
-    "deploy": "npm run build && gh-pages -d dist",
-    "clean": "rm -rf dist"
-  },
-  "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
-  "license": "ISC",
-  "devDependencies": {
-    "css-loader": "^6.7.1",
-    "file-loader": "^6.2.0",
-    "gh-pages": "^3.2.3",
-    "html-webpack-plugin": "^5.5.0",
-    "style-loader": "^3.3.1",
-    "ts-loader": "^9.2.8",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.71.0",
-    "webpack-cli": "^4.9.2",
-    "webpack-dev-server": "^4.7.4"
-  },
-  "dependencies": {
-    "react-dom-lazyload-component": "file:../examples/react-dom-lazyload-component-1.0.0.tgz"
-  }
+ "name": "examples",
+ "version": "1.0.0",
+ "description": "react-dom-lazyload-component examples",
+ "main": "index.tsx",
+ "scripts": {
+  "start": "webpack-dev-server --mode development",
+  "build": "npm run clean && webpack --mode production",
+  "deploy": "npm run build && gh-pages -d dist",
+  "clean": "rm -rf dist"
+ },
+ "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
+ "license": "ISC",
+ "devDependencies": {
+  "css-loader": "^6.7.1",
+  "file-loader": "^6.2.0",
+  "gh-pages": "^3.2.3",
+  "html-webpack-plugin": "^5.5.0",
+  "style-loader": "^3.3.1",
+  "ts-loader": "^9.2.8",
+  "url-loader": "^4.1.1",
+  "webpack": "^5.71.0",
+  "webpack-cli": "^4.9.2",
+  "webpack-dev-server": "^4.7.4"
+ }
 }

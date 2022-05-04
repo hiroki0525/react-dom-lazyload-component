@@ -32,6 +32,7 @@ describe('Browser', () => {
         rowHeight,
         itemsLength
       );
+      await page.waitForTimeout(2000);
     };
     const getVisibleTexts = (): typeof lazyLoadTexts =>
       lazyLoadTexts.filter(text => text === visibleText);
@@ -53,34 +54,34 @@ describe('Browser', () => {
 
       describe('scroll down', () => {
         beforeAll(async () => {
-          await scrollList(rootId, 2);
+          await scrollList(rootId, 2.5);
           await setLazyLoadTexts(rootId);
         });
 
-        it('visible item is 7', () => {
+        it('visible item is 8', () => {
           const visibleTexts = getVisibleTexts();
-          expect(visibleTexts.length).toBe(7);
+          expect(visibleTexts.length).toBe(8);
         });
 
-        it('invisible item is 3', () => {
+        it('invisible item is 2', () => {
           const invisibleTexts = getInvisibleTexts();
-          expect(invisibleTexts.length).toBe(3);
+          expect(invisibleTexts.length).toBe(2);
         });
 
         describe('scroll up', () => {
           beforeAll(async () => {
-            await scrollList(rootId, 1);
+            await scrollList(rootId, 1.5);
             await setLazyLoadTexts(rootId);
           });
 
-          it('visible item is 7', () => {
+          it('visible item is 8', () => {
             const visibleTexts = getVisibleTexts();
-            expect(visibleTexts.length).toBe(7);
+            expect(visibleTexts.length).toBe(8);
           });
 
-          it('invisible item is 3', () => {
+          it('invisible item is 2', () => {
             const invisibleTexts = getInvisibleTexts();
-            expect(invisibleTexts.length).toBe(3);
+            expect(invisibleTexts.length).toBe(2);
           });
         });
       });
@@ -101,34 +102,34 @@ describe('Browser', () => {
 
       describe('scroll down', () => {
         beforeAll(async () => {
-          await scrollList(rootId, 2);
+          await scrollList(rootId, 2.5);
           await setLazyLoadTexts(rootId);
         });
 
-        it('visible item is 5', () => {
+        it('visible item is 6', () => {
           const visibleTexts = getVisibleTexts();
-          expect(visibleTexts.length).toBe(5);
+          expect(visibleTexts.length).toBe(6);
         });
 
-        it('invisible item is 5', () => {
+        it('invisible item is 4', () => {
           const invisibleTexts = getInvisibleTexts();
-          expect(invisibleTexts.length).toBe(5);
+          expect(invisibleTexts.length).toBe(4);
         });
 
         describe('scroll up', () => {
           beforeAll(async () => {
-            await scrollList(rootId, 1);
+            await scrollList(rootId, 1.5);
             await setLazyLoadTexts(rootId);
           });
 
-          it('visible item is 5', () => {
+          it('visible item is 6', () => {
             const visibleTexts = getVisibleTexts();
-            expect(visibleTexts.length).toBe(5);
+            expect(visibleTexts.length).toBe(6);
           });
 
-          it('invisible item is 5', () => {
+          it('invisible item is 4', () => {
             const invisibleTexts = getInvisibleTexts();
-            expect(invisibleTexts.length).toBe(5);
+            expect(invisibleTexts.length).toBe(4);
           });
         });
       });

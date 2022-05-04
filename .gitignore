@@ -6,3 +6,4 @@ node_modules
 *.iml
 /dist/
 /examples/dist/
+/examples/react-dom-lazyload-component-*.tgz
