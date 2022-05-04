@@ -15,18 +15,18 @@ describe('LazyLoad', () => {
   });
   const visibleText = 'visible';
   const invisibleText = 'invisible';
-  const testRender = (isVisible: boolean) =>
-    isVisible ? visibleText : invisibleText;
 
   window.IntersectionObserver = mockIntersectionObserver;
 
   const rootId = 'rootId';
   const testId = 'testId';
 
-  const defaultProps: LazyLoadProps = {
-    render: testRender,
+  type ExcludeChildrenLazyLoadProps = Omit<LazyLoadProps, 'children'>;
+
+  const defaultProps: ExcludeChildrenLazyLoadProps = {
     rootId,
     'data-testid': testId,
+    InvisibleComponent: invisibleText,
   };
 
   afterEach(() => {
@@ -36,13 +36,15 @@ describe('LazyLoad', () => {
 
   describe('initial render', () => {
     it('called IntersectionObserver', () => {
-      render(<LazyLoad {...defaultProps} />);
+      render(<LazyLoad {...defaultProps}>{visibleText}</LazyLoad>);
       expect(window.IntersectionObserver).toHaveBeenCalledTimes(1);
     });
 
     describe('default props', () => {
       it('invisible', () => {
-        const { getByText } = render(<LazyLoad {...defaultProps} />);
+        const { getByText } = render(
+          <LazyLoad {...defaultProps}>{visibleText}</LazyLoad>
+        );
         expect(getByText(invisibleText)).toBeDefined();
       });
     });
@@ -51,8 +53,11 @@ describe('LazyLoad', () => {
       describe('as is span', () => {
         it('render span', () => {
           const expectedAs = 'span';
-          const props: LazyLoadProps = { ...defaultProps, as: expectedAs };
-          render(<LazyLoad {...props} />);
+          const props: ExcludeChildrenLazyLoadProps = {
+            ...defaultProps,
+            as: expectedAs,
+          };
+          render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
           const element = screen.getByTestId(testId);
           expect(element.tagName.toLowerCase()).toBe(expectedAs);
         });
@@ -60,11 +65,13 @@ describe('LazyLoad', () => {
 
       describe('forceVisible is true', () => {
         it('visible', () => {
-          const props: LazyLoadProps = {
+          const props: ExcludeChildrenLazyLoadProps = {
             ...defaultProps,
             forceVisible: true,
           };
-          const { getByText } = render(<LazyLoad {...props} />);
+          const { getByText } = render(
+            <LazyLoad {...props}>{visibleText}</LazyLoad>
+          );
           expect(getByText(visibleText)).toBeDefined();
         });
       });
@@ -74,10 +81,15 @@ describe('LazyLoad', () => {
   describe('rerender', () => {
     describe('forceVisible is true', () => {
       it('visible', () => {
-        const { rerender, getByText } = render(<LazyLoad {...defaultProps} />);
+        const { rerender, getByText } = render(
+          <LazyLoad {...defaultProps}>{visibleText}</LazyLoad>
+        );
         expect(getByText(invisibleText)).toBeDefined();
-        const props: LazyLoadProps = { ...defaultProps, forceVisible: true };
-        rerender(<LazyLoad {...props} />);
+        const props: ExcludeChildrenLazyLoadProps = {
+          ...defaultProps,
+          forceVisible: true,
+        };
+        rerender(<LazyLoad {...props}>{visibleText}</LazyLoad>);
         expect(getByText(visibleText)).toBeDefined();
       });
     });
@@ -85,7 +97,9 @@ describe('LazyLoad', () => {
 
   describe('unmount', () => {
     it('called IntersectionObserver.disconnect ', () => {
-      const { unmount } = render(<LazyLoad {...defaultProps} />);
+      const { unmount } = render(
+        <LazyLoad {...defaultProps}>{visibleText}</LazyLoad>
+      );
       unmount();
       expect(disconnect).toBeCalledTimes(1);
     });
