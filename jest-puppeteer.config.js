@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    command: 'npm run -w examples start',
+    command: 'npm run start:examples:ci',
     port: 3001,
     host: 'localhost',
     protocol: 'http',
