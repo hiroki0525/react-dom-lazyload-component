@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState, ElementType, ReactNode } from 'react';
 
 export type LazyLoadProps = {
-  render: (isVisible: boolean) => ReactNode;
+  InvisibleComponent?: ReactNode;
+  children: ReactNode;
   as?: ElementType;
   forceVisible?: boolean;
   rootId?: string;
@@ -11,7 +12,8 @@ export type LazyLoadProps = {
 } & Omit<IntersectionObserverInit, 'root'>;
 
 export default function LazyLoad({
-  render,
+  InvisibleComponent = null,
+  children,
   forceVisible = false,
   rootId,
   rootMargin,
@@ -69,7 +71,7 @@ export default function LazyLoad({
 
   return (
     <Tag ref={targetRef} {...props}>
-      {render(isVisible)}
+      {isVisible ? children : InvisibleComponent}
     </Tag>
   );
 }

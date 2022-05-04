@@ -3,9 +3,6 @@ import { createRoot } from 'react-dom/client';
 import LazyLoad from 'react-dom-lazyload-component';
 import './index.css';
 
-const lazyLoadRender = (isVisible: boolean): string =>
-  isVisible ? 'Visible' : 'Invisible';
-
 const App = () => (
   <StrictMode>
     <section>
@@ -16,11 +13,13 @@ const App = () => (
           {[...Array(10)].map((_, index) => (
             <LazyLoad
               key={`demo1-${index}`}
-              render={lazyLoadRender}
+              InvisibleComponent='Invisible'
               rootId='onceIsTrue'
               as='li'
               className='row'
-            />
+            >
+              Visible
+            </LazyLoad>
           ))}
         </ul>
       </section>
@@ -30,12 +29,14 @@ const App = () => (
           {[...Array(10)].map((_, index) => (
             <LazyLoad
               key={`demo2-${index}`}
-              render={lazyLoadRender}
+              InvisibleComponent='Invisible'
               rootId='onceIsFalse'
               as='li'
               className='row'
               once={false}
-            />
+            >
+              Visible
+            </LazyLoad>
           ))}
         </ul>
       </section>
