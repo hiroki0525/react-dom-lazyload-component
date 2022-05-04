@@ -8,7 +8,7 @@ const { dependencies, devDependencies } = packageJson;
 
 if (dependencies) {
   const installDepsCommand = Object.entries(dependencies)
-    .map(entry => `${entry[0]}@${entry[1]}`)
+    .map(entry => `${entry[0]}@${entry[1]} --force`)
     .join(' ');
   try {
     await exec(`npm i ${installDepsCommand}`);
@@ -23,7 +23,7 @@ if (devDependencies) {
     .map(entry => `${entry[0]}@${entry[1]}`)
     .join(' ');
   try {
-    await exec(`npm i -D ${installDevDepsCommand}`);
+    await exec(`npm i -D ${installDevDepsCommand} --force`);
   } catch (e) {
     console.error(e);
     process.exit(1);
