@@ -30,9 +30,11 @@ const App = () => (
         {/* This will optimize Core Web Vitals */}
         <LazyLoad
           as='footer'
-          render={(isVisible) => isVisible ? <Footer /> : <Loading />}
+          InvisibleComponent={<Loading />}
           rootMargin='200px 0px'
-        />
+        >
+          <Footer />
+        </LazyLoad>
     </>
 )
 
@@ -43,15 +45,16 @@ ReactDOM.render(<App />, document.body);
 
 #### LazyLoad
 
-| Name         | Required | Type                              | Default | Description                                                                                                                                                                                                                                                                                         |
-|--------------|----------|-----------------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| render       | Yes      | (isVisible: boolean) => ReactNode | -       | `isVisible` is whether the component is in the viewport or not.                                                                                                                                                                                                                                     |
-| rootId       | No       | string                            | -       | The id of element which is `IntersectionObserver`'s target. If `rootId` is not specified, then the bounds of the actual document viewport are used. This prop wraps [IntersectionObserver.root](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root) because of performance. |
-| rootMargin   | No       | string                            | -       | Please see [IntersectionObserver.rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin).                                                                                                                                                                     |
-| threshold    | No       | number &#124; number[]            | -       | Please see [IntersectionObserver.thresholds](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds).                                                                                                                                                                     |
-| forceVisible | No       | boolean                           | false   | You can forces the component to display regardless of whether the element is visible in the viewport.                                                                                                                                                                                               |
-| once         | No       | boolean                           | true    | You can control whether the element in the viewport is shown at once or not                                                                                                                                                                                                                         |
-| as           | No       | string                            | div     | You can specify tag name to `LazyLoad` component.                                                                                                                                                                                                                                                   |
+| Name               | Required | Type                   | Default | Description                                                                                                                                                                                                                                                                                         |
+|--------------------|----------|------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| children           | Yes      | ReactNode              | -       | Component is rendered when it is in the viewport.                                                                                                                                                                                                                                                   |
+| InvisibleComponent | No       | ReactNode              | null    | Component is rendered when it is not in the viewport.                                                                                                                                                                                                                                               |
+| rootId             | No       | string                 | -       | The id of element which is `IntersectionObserver`'s target. If `rootId` is not specified, then the bounds of the actual document viewport are used. This prop wraps [IntersectionObserver.root](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root) because of performance. |
+| rootMargin         | No       | string                 | -       | Please see [IntersectionObserver.rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin).                                                                                                                                                                     |
+| threshold          | No       | number &#124; number[] | -       | Please see [IntersectionObserver.thresholds](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds).                                                                                                                                                                     |
+| forceVisible       | No       | boolean                | false   | You can forces the component to display regardless of whether the element is visible in the viewport.                                                                                                                                                                                               |
+| once               | No       | boolean                | true    | You can control whether the element in the viewport is shown at once or not                                                                                                                                                                                                                         |
+| as                 | No       | string                 | div     | You can specify tag name to `LazyLoad` component.                                                                                                                                                                                                                                                   |
 
 `LazyLoad` also can be received props like `className`, `style` and `id`.
 

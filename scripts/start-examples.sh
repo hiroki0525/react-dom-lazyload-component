@@ -9,6 +9,7 @@ else
   # local
   npm run uninstall-local-pkg
   npm install -w examples
+  npm run build
   ./scripts/link-to-examples.sh link
 fi
 npm run start:examples
