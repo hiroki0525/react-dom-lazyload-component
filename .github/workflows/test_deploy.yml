@@ -17,7 +17,7 @@ jobs:
         with:
           node-version: '16'
       - name: Install Dependencies
-        run: npm run install-only-root
+        run: npm ci
       - name: Test
         run: |
           npm run test && npm run lint && npm run prettier
