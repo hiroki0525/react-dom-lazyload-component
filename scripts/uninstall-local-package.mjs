@@ -8,7 +8,7 @@ const exportDir = `./${baseDir}`;
 try {
   await fs.unlink(`./${exportDir}/${packageName}`);
   if (!packageJson.dependencies) {
-    return process.exit(0);
+    process.exit(0);
   }
   delete packageJson.dependencies['react-dom-lazyload-component'];
   await fs.unlink(`./${baseDir}/package.json`);
