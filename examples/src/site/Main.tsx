@@ -15,7 +15,6 @@ const personalities = [
   'Cool Creator',
   'Advanced Executive',
 ];
-const owners = [''];
 
 const rand = (max: number): number => Math.floor(Math.random() * max);
 
