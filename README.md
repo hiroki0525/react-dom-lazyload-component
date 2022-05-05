@@ -20,20 +20,20 @@ yarn add react-dom-lazyload-component
 import React from 'react';
 import ReactDOM from 'react-dom';
 import LazyLoad from 'react-dom-lazyload-component';
-import { Header, Main, Footer, Loading } from './MyComponents';
+import { Header, Main, SuspenseExample, Loading } from './MyComponents';
 
 const App = () => (
     <>
         <Header />
         <Main />
-        {/* Footer is not needed to be rendered first. */}
+        {/* SuspenseExample is not needed to be rendered first. */}
         {/* This will optimize Core Web Vitals */}
         <LazyLoad
           as='footer'
           InvisibleComponent={<Loading />}
           rootMargin='200px 0px'
         >
-          <Footer />
+          <SuspenseExample />
         </LazyLoad>
     </>
 )

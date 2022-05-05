@@ -1,7 +1,9 @@
-import { StrictMode } from 'react';
+import { StrictMode, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import LazyLoad from 'react-dom-lazyload-component';
 import './index.css';
+
+const SuspenseExample = lazy(() => import('./SuspenseExample'));
 
 const App = () => (
   <StrictMode>
@@ -39,6 +41,16 @@ const App = () => (
             </LazyLoad>
           ))}
         </ul>
+      </section>
+      <section>
+        <h2>Suspense</h2>
+        <LazyLoad
+          id='suspense'
+          InvisibleComponent='Invisible'
+          rootMargin='200px 0px'
+        >
+          <SuspenseExample />
+        </LazyLoad>
       </section>
     </section>
   </StrictMode>

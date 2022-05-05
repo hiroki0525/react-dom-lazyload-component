@@ -1,4 +1,12 @@
-import { useEffect, useRef, useState, ElementType, ReactNode } from 'react';
+import {
+  useEffect,
+  useRef,
+  useState,
+  ElementType,
+  ReactNode,
+  Suspense,
+  isValidElement,
+} from 'react';
 
 export type LazyLoadProps = {
   InvisibleComponent?: ReactNode;
@@ -69,9 +77,24 @@ export default function LazyLoad({
     };
   }, [targetRef, rootRef]);
 
+  const isLazyChildren =
+    isValidElement(children) &&
+    // TODO: TypeScript can't check $$typeof
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    children.type.$$typeof === Symbol.for('react.lazy');
+
   return (
     <Tag ref={targetRef} {...props}>
-      {isVisible ? children : InvisibleComponent}
+      {isLazyChildren ? (
+        <Suspense fallback={InvisibleComponent}>
+          {isVisible ? children : InvisibleComponent}
+        </Suspense>
+      ) : isVisible ? (
+        children
+      ) : (
+        InvisibleComponent
+      )}
     </Tag>
   );
 }
