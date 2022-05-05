@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.0.0...v2.1.0) (2022-05-05)
+
+
+### Features
+
+* automatically enable React.Suspense ([92ee132](https://github.com/hiroki0525/react-dom-lazyload-component/commit/92ee13261f356170ddebc02dab6471d11d8bc670))
+
 # [2.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v1.0.1...v2.0.0) (2022-05-04)
 
 
