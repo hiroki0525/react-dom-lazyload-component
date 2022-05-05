@@ -20,12 +20,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
-      {
-        test: /\.(jpg|png|ico)$/,
-        use: 'url-loader',
-      },
+      // {
+      //   test: /\.(jpg|png|ico)$/,
+      //   use: 'url-loader',
+      // },
     ],
   },
   resolve: {
@@ -35,5 +35,11 @@ module.exports = {
   plugins: [htmlWebpackPlugin],
   devServer: {
     port: 3001,
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
+    historyApiFallback: {
+      rewrites: [{ from: /^\/*/, to: '/index.html' }],
+    },
   },
 };

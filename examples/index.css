@@ -1,20 +1,35 @@
-ul {
-  list-style: none;
-  padding: 0;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  @apply text-3xl py-2;
+}
+
+h2 {
+  @apply text-2xl py-2;
+}
+
+h3 {
+  @apply text-xl py-2;
+}
+
+header {
+  @apply flex items-center;
+}
+
+nav {
+  @apply py-2 px-4 border-r border-solid border-gray-200 fixed top-0 w-[200px] h-full;
+}
+
+a {
+  @apply text-blue-400 hover:underline;
 }
 
 .scrollList {
-  height: 500px;
-  width: 300px;
-  border: solid 1px #c0c0c0;
-  overflow-y: scroll;
+  @apply h-[500px] w-[300px] border border-solid border-gray-300 overflow-y-scroll;
 }
 
 .row {
-  height: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: solid 1px #eeeeee;
-  box-sizing: border-box;
+  @apply h-[100px] flex justify-center items-center border-solid border-b border-gray-200
 }
