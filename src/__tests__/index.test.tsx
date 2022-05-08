@@ -75,6 +75,33 @@ describe('LazyLoad', () => {
           expect(getByText(visibleText)).toBeDefined();
         });
       });
+
+      describe('onVisible is specified', () => {
+        const mockOnVisible = jest.fn();
+
+        describe('visible', () => {
+          it('onVisible will be called', () => {
+            const props: ExcludeChildrenLazyLoadProps = {
+              ...defaultProps,
+              forceVisible: true,
+              onVisible: mockOnVisible,
+            };
+            render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
+            expect(mockOnVisible).toHaveBeenCalledTimes(1);
+          });
+        });
+
+        describe('invisible', () => {
+          it('onVisible will not be called', () => {
+            const props: ExcludeChildrenLazyLoadProps = {
+              ...defaultProps,
+              onVisible: mockOnVisible,
+            };
+            render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
+            expect(mockOnVisible).toHaveBeenCalledTimes(0);
+          });
+        });
+      });
     });
   });
 

@@ -15,6 +15,7 @@ export type LazyLoadProps = {
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
+  onVisible?: () => void;
   // eslint-disable-next-line
   [x: string]: any;
 } & Omit<IntersectionObserverInit, 'root'>;
@@ -27,6 +28,7 @@ export default function LazyLoad({
   rootMargin,
   threshold,
   once = true,
+  onVisible,
   as: Tag = 'div',
   ...props
 }: LazyLoadProps): JSX.Element {
@@ -47,6 +49,12 @@ export default function LazyLoad({
   useEffect(() => {
     setIsVisible(forceVisible);
   }, [forceVisible]);
+
+  useEffect(() => {
+    if (isVisible) {
+      onVisible && onVisible();
+    }
+  }, [isVisible]);
 
   useEffect(() => {
     const el = targetRef.current;
