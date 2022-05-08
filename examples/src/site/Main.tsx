@@ -1,5 +1,6 @@
 import LazyLoad from 'react-dom-lazyload-component';
 import Loading from './Loading';
+import { baseUrl } from '../util';
 
 const catNamesBase = ['Tom', 'Jerry', 'Michael', 'Ninja', 'Samurai'];
 const catNames = [
@@ -22,7 +23,7 @@ const initShowIndex = 2;
 
 const CatItem = ({ name }: { name: string }) => (
   <li className='py-2 flex flex-wrap'>
-    <img src={`cat${rand(4) + 1}.jpg`} alt={name} width={640 / 2} />
+    <img src={`${baseUrl}/cat${rand(4) + 1}.jpg`} alt={name} width={640 / 2} />
     <article className='flex flex-col pl-2'>
       <h3>{name}</h3>
       <ul>

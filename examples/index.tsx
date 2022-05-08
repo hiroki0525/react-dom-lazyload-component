@@ -5,12 +5,13 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Usage from './src/usage/Usage';
 import Layout from './src/Layout';
 import Site from './src/site/Site';
+import { baseUrl } from './src/util';
 
 const App = () => (
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Layout />}>
+        <Route path={baseUrl} element={<Layout />}>
           <Route index element={<Usage />} />
           <Route path='site' element={<Site />} />
         </Route>

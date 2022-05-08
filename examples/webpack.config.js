@@ -1,11 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const htmlWebpackPlugin = new HtmlWebpackPlugin({
-  template: path.join(__dirname, 'index.html'),
-  filename: './index.html',
-});
+const webpack = require('webpack');
 
-module.exports = {
+const config = {
   entry: path.join(__dirname, 'index.tsx'),
   output: {
     path: `${__dirname}/dist/`,
@@ -22,17 +19,25 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
-      // {
-      //   test: /\.(jpg|png|ico)$/,
-      //   use: 'url-loader',
-      // },
+      {
+        test: /\.(jpg|png|ico)$/,
+        use: 'url-loader',
+      },
     ],
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.json'],
+    alias: {
+      examples: path.resolve(__dirname, 'src/'),
+    },
   },
   target: ['web', 'es6'],
-  plugins: [htmlWebpackPlugin],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'index.html'),
+      filename: './index.html',
+    }),
+  ],
   devServer: {
     port: 3001,
     static: {
@@ -42,4 +47,16 @@ module.exports = {
       rewrites: [{ from: /^\/*/, to: '/index.html' }],
     },
   },
+};
+
+module.exports = (env, argv) => {
+  // process.env.NODE_ENV is undefined, so use argv.mode.
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env.BASE_URL': JSON.stringify(
+        argv.mode === 'production' ? '/react-dom-lazyload-component' : ''
+      ),
+    })
+  );
+  return config;
 };
