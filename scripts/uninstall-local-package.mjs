@@ -6,7 +6,11 @@ const baseDir = 'examples';
 const exportDir = `./${baseDir}`;
 
 try {
-  await fs.unlink(`./${exportDir}/${packageName}`);
+  try {
+    await fs.unlink(`./${exportDir}/${packageName}`);
+  } catch (e) {
+    console.debug(e);
+  }
   if (!packageJson.dependencies) {
     process.exit(0);
   }
