@@ -15,16 +15,21 @@ describe('Browser', () => {
     const visibleText = 'Visible';
     const invisibleText = 'Invisible';
 
-    describe('once is true or false', () => {
+    let lazyLoadTexts: (string | null)[] = [];
+    const setLazyLoadTexts = async (selectorId: string): Promise<void> => {
+      await page.waitForSelector(selectorId);
+      lazyLoadTexts = await page.$$eval(`${selectorId} > li`, items =>
+        items.map(({ textContent }) => textContent)
+      );
+    };
+    const getVisibleTexts = (): typeof lazyLoadTexts =>
+      lazyLoadTexts.filter(text => text === visibleText);
+    const getInvisibleTexts = (): typeof lazyLoadTexts =>
+      lazyLoadTexts.filter(text => text === invisibleText);
+
+    describe('once is true(default) or false', () => {
       const rowsLength = 10;
       const rowHeight = 100;
-      let lazyLoadTexts: (string | null)[] = [];
-      const setLazyLoadTexts = async (selectorId: string): Promise<void> => {
-        await page.waitForSelector(selectorId);
-        lazyLoadTexts = await page.$$eval(`${selectorId} > li`, items =>
-          items.map(({ textContent }) => textContent)
-        );
-      };
       const scrollList = async (
         selectorId: string,
         itemsLength = 1
@@ -38,12 +43,8 @@ describe('Browser', () => {
           rowHeight,
           itemsLength
         );
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
       };
-      const getVisibleTexts = (): typeof lazyLoadTexts =>
-        lazyLoadTexts.filter(text => text === visibleText);
-      const getInvisibleTexts = (): typeof lazyLoadTexts =>
-        lazyLoadTexts.filter(text => text === invisibleText);
 
       describe('once is true', () => {
         const rootId = '#onceIsTrue';
@@ -138,6 +139,34 @@ describe('Browser', () => {
               expect(invisibleTexts.length).toBe(4);
             });
           });
+        });
+      });
+    });
+
+    describe('forceVisible', () => {
+      const forceVisibleId = '#forceVisible';
+      const timeout = 5000;
+
+      describe('initial render', () => {
+        beforeAll(async () => {
+          await setLazyLoadTexts(forceVisibleId);
+        });
+
+        it('invisible', () => {
+          const invisibleTexts = getInvisibleTexts();
+          expect(invisibleTexts.length).toBe(5);
+        });
+      });
+
+      describe(`after about ${timeout} ms`, () => {
+        beforeAll(async () => {
+          await page.waitForTimeout(timeout);
+          await setLazyLoadTexts(forceVisibleId);
+        });
+
+        it('visible', () => {
+          const visibleTexts = getVisibleTexts();
+          expect(visibleTexts.length).toBe(5);
         });
       });
     });

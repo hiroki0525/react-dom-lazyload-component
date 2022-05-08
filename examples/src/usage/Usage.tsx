@@ -1,5 +1,6 @@
 import LazyLoad from 'react-dom-lazyload-component';
 import { lazy } from 'react';
+import ForceVisibleExample from './ForceVisibleExample';
 
 const SuspenseExample = lazy(() => import('./SuspenseExample'));
 
@@ -50,6 +51,7 @@ export default function Usage() {
           <SuspenseExample />
         </LazyLoad>
       </section>
+      <ForceVisibleExample />
     </>
   );
 }
