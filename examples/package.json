@@ -4,8 +4,8 @@
  "description": "react-dom-lazyload-component examples",
  "main": "index.tsx",
  "scripts": {
-  "start": "webpack-dev-server --mode development",
-  "build": "npm run clean && webpack --mode production",
+  "start": "webpack-dev-server --mode=development",
+  "build": "npm run clean && webpack --mode=production",
   "deploy": "npm run build && gh-pages -d dist",
   "clean": "rm -rf dist"
  },

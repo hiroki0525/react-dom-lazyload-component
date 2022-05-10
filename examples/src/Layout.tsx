@@ -1,4 +1,5 @@
 import { Link, Outlet } from 'react-router-dom';
+import { baseUrl } from './util';
 
 export default function Layout() {
   return (
@@ -6,10 +7,10 @@ export default function Layout() {
       <nav>
         <ul>
           <li>
-            <Link to='/'>Usage</Link>
+            <Link to={baseUrl}>Usage</Link>
           </li>
           <li>
-            <Link to='/site'>Example Site</Link>
+            <Link to={`${baseUrl}/site`}>Example Site</Link>
           </li>
         </ul>
       </nav>
