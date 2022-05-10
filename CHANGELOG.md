@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.1.0...v2.2.0) (2022-05-10)
+
+
+### Features
+
+* add onVisible prop ([de2abdf](https://github.com/hiroki0525/react-dom-lazyload-component/commit/de2abdfa809ae3cbbd8b27c71a6d41bc2dbc90dd)), closes [#33](https://github.com/hiroki0525/react-dom-lazyload-component/issues/33)
+
 # [2.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.0.0...v2.1.0) (2022-05-05)
 
 
