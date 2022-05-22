@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.2.0...v2.3.0) (2022-05-22)
+
+
+### Features
+
+* add autoCalculateHeight ([891589b](https://github.com/hiroki0525/react-dom-lazyload-component/commit/891589bab7010f65a1276b4af21dff57902c5d7a))
+
 # [2.2.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.1.0...v2.2.0) (2022-05-10)
 
 
