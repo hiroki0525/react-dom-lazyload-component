@@ -14,6 +14,7 @@ describe('Browser', () => {
   describe('LazyLoad', () => {
     const visibleText = 'Visible';
     const invisibleText = 'Invisible';
+    const rowHeight = 100;
 
     let lazyLoadTexts: (string | null)[] = [];
     const setLazyLoadTexts = async (selectorId: string): Promise<void> => {
@@ -26,25 +27,24 @@ describe('Browser', () => {
       lazyLoadTexts.filter(text => text === visibleText);
     const getInvisibleTexts = (): typeof lazyLoadTexts =>
       lazyLoadTexts.filter(text => text === invisibleText);
+    const scrollList = async (
+      selectorId: string,
+      itemsLength = 1
+    ): Promise<void> => {
+      const rootDom = await page.$(selectorId);
+      await page.evaluate(
+        (el, rHeight, iLength) => {
+          el.scrollTop = rHeight * iLength;
+        },
+        rootDom,
+        rowHeight,
+        itemsLength
+      );
+      await page.waitForTimeout(500);
+    };
 
     describe('once is true(default) or false', () => {
       const rowsLength = 10;
-      const rowHeight = 100;
-      const scrollList = async (
-        selectorId: string,
-        itemsLength = 1
-      ): Promise<void> => {
-        const rootDom = await page.$(selectorId);
-        await page.evaluate(
-          (el, rHeight, iLength) => {
-            el.scrollTop = rHeight * iLength;
-          },
-          rootDom,
-          rowHeight,
-          itemsLength
-        );
-        await page.waitForTimeout(500);
-      };
 
       describe('once is true', () => {
         const rootId = '#onceIsTrue';
@@ -226,6 +226,65 @@ describe('Browser', () => {
 
         it('not called to request code splitted file', () => {
           expect(codeSplittedRequestUrl).not.toBeNull();
+        });
+      });
+    });
+
+    describe('autoCalculateHeight is true', () => {
+      const autoCalculateHeightId = '#autoCalculateHeight';
+      let rowTextHeights: [string, string][] = [];
+      const setRowTextHeights = async (): Promise<void> => {
+        rowTextHeights = await page.$$eval(
+          `${autoCalculateHeightId} > li`,
+          items =>
+            items.reduce<[string, string][]>((results, item) => {
+              results.push([
+                item.textContent ?? '',
+                window.getComputedStyle(item).getPropertyValue('height'),
+              ]);
+              return results;
+            }, [])
+        );
+      };
+      const getVisibleHeights = (): typeof rowTextHeights =>
+        rowTextHeights.filter(
+          rowTextHeight =>
+            rowTextHeight[0] === visibleText &&
+            rowTextHeight[1] === `${rowHeight}px`
+        );
+      const getInvisibleHeights = (): typeof rowTextHeights =>
+        rowTextHeights.filter(
+          rowTextHeight =>
+            rowTextHeight[0] === invisibleText &&
+            rowTextHeight[1] === `${rowHeight}px`
+        );
+
+      describe('initial render', () => {
+        beforeAll(async () => {
+          await setRowTextHeights();
+        });
+
+        it('visible row height is 100px', () => {
+          expect(getVisibleHeights().length).toBe(5);
+        });
+
+        it('invisible row height is 100px', () => {
+          expect(getInvisibleHeights().length).toBe(5);
+        });
+
+        describe('scroll', () => {
+          beforeAll(async () => {
+            await scrollList(autoCalculateHeightId, 0.5);
+            await setRowTextHeights();
+          });
+
+          it('visible row height is 100px', () => {
+            expect(getVisibleHeights().length).toBe(6);
+          });
+
+          it('invisible row height is 100px', () => {
+            expect(getInvisibleHeights().length).toBe(4);
+          });
         });
       });
     });

@@ -52,6 +52,22 @@ export default function Usage() {
         </LazyLoad>
       </section>
       <ForceVisibleExample />
+      <section>
+        <h2>autoCalculateHeight is true</h2>
+        <ul id='autoCalculateHeight' className='scrollList'>
+          {[...Array(10)].map((_, index) => (
+            <LazyLoad
+              key={`demo4-${index}`}
+              InvisibleComponent='Invisible'
+              rootId='autoCalculateHeight'
+              as='li'
+              autoCalculateHeight
+            >
+              <div className='row'>Visible</div>
+            </LazyLoad>
+          ))}
+        </ul>
+      </section>
     </>
   );
 }
