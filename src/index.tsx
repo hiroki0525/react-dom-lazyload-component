@@ -6,6 +6,7 @@ import {
   ReactNode,
   Suspense,
   isValidElement,
+  startTransition,
 } from 'react';
 
 export type LazyLoadProps = {
@@ -98,10 +99,15 @@ export default function LazyLoad({
     ) => {
       const entry = entries[0];
       if (entry.isIntersecting) {
-        setIsVisible(true);
+        startTransition(() => {
+          setIsVisible(true);
+        });
         once && observer.disconnect();
       } else {
-        once || setIsVisible(false);
+        once ||
+          startTransition(() => {
+            setIsVisible(false);
+          });
       }
     };
     const observer = new IntersectionObserver(checkInViewportAndShow, options);
