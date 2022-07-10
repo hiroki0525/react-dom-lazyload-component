@@ -4,13 +4,13 @@ updates:
     directory: "/"
     target-branch: "develop"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     commit-message:
       prefix: "build(deps): "
   - package-ecosystem: "npm"
     target-branch: "develop"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     commit-message:
       prefix: "build(deps): "
