@@ -1,0 +1,10 @@
+version = 1
+
+[merget]
+method = "squash"
+delete_branch_on_merge = true
+optimistic_updates = true
+
+[merge.automerge_dependencies]
+versions = ["minor", "patch"]
+usernames = ["dependabot"]
