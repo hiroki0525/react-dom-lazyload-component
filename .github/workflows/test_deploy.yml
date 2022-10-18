@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version-file: '.node-version'
       - name: Install Dependencies
         run: npm ci
       - name: Test
