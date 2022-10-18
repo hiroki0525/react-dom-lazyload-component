@@ -48,10 +48,6 @@ export default function LazyLoad({
   }, [rootId]);
 
   useEffect(() => {
-    setIsVisible(forceVisible);
-  }, [forceVisible]);
-
-  useEffect(() => {
     if (!isVisible || !onVisible) {
       return;
     }
