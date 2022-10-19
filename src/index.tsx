@@ -63,6 +63,9 @@ export default function LazyLoad({
     if (observerRef.current) {
       return;
     }
+    if (once && isVisible) {
+      return;
+    }
     const el = targetRef.current;
     if (!el) {
       return;
@@ -92,7 +95,7 @@ export default function LazyLoad({
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [once, rootMargin, threshold]);
+  }, [isVisible, once, rootMargin, threshold]);
 
   const displayComponent = isVisible ? children : fallback;
 
