@@ -32,7 +32,7 @@ const App = () => (
         {/* This will optimize Core Web Vitals */}
         <LazyLoad
           as='footer'
-          InvisibleComponent={<Loading />}
+          fallback={<Loading />}
           rootMargin='200px 0px'
           suspense
         >
@@ -51,7 +51,7 @@ ReactDOM.render(<App />, document.body);
 | Name               | Required | Type                   | Default | Description                                                                                                                                                                                                                                                                                         |
 |--------------------|----------|------------------------|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | children           | Yes      | ReactNode              | -       | Component is rendered when it is in the viewport. Automatically enable `React.Suspense` if you use `React.lazy` .                                                                                                                                                                                   |
-| InvisibleComponent | No       | ReactNode              | null    | Component is rendered when it is not in the viewport.                                                                                                                                                                                                                                               |
+| fallback | No       | ReactNode              | null    | Component is rendered when it is not in the viewport.                                                                                                                                                                                                                                               |
 | rootId             | No       | string                 | -       | The id of element which is `IntersectionObserver`'s target. If `rootId` is not specified, then the bounds of the actual document viewport are used. This prop wraps [IntersectionObserver.root](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/root) because of performance. |
 | rootMargin         | No       | string                 | -       | Please see [IntersectionObserver.rootMargin](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/rootMargin).                                                                                                                                                                     |
 | threshold          | No       | number &#124; number[] | -       | Please see [IntersectionObserver.thresholds](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds).                                                                                                                                                                     |

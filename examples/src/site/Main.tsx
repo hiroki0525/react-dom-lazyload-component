@@ -54,7 +54,7 @@ export default function Main() {
             <LazyLoad
               key={index}
               rootId='cat-list'
-              InvisibleComponent={<Loading />}
+              fallback={<Loading />}
               as='li'
             >
               <CatItem name={name} />

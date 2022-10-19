@@ -17,7 +17,7 @@ export default function Site() {
         <h1>Cats Lovers</h1>
       </header>
       <Main />
-      <LazyLoad InvisibleComponent={<Loading />} as='footer'>
+      <LazyLoad fallback={<Loading />} as='footer'>
         <Footer />
       </LazyLoad>
     </>

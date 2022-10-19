@@ -9,7 +9,7 @@ import {
 } from 'react';
 
 export type LazyLoadProps = {
-  InvisibleComponent?: ReactNode;
+  fallback?: ReactNode;
   children: ReactNode;
   as?: ElementType;
   forceVisible?: boolean;
@@ -22,7 +22,7 @@ export type LazyLoadProps = {
 } & Omit<IntersectionObserverInit, 'root'>;
 
 export default function LazyLoad({
-  InvisibleComponent = null,
+  fallback,
   children,
   forceVisible = false,
   rootId,
@@ -88,12 +88,12 @@ export default function LazyLoad({
     };
   }, [once, rootMargin, threshold]);
 
-  const displayComponent = isVisible ? children : InvisibleComponent;
+  const displayComponent = isVisible ? children : fallback;
 
   return (
     <Tag ref={targetRef} {...props}>
       {suspense ? (
-        <Suspense fallback={InvisibleComponent}>{displayComponent}</Suspense>
+        <Suspense fallback={fallback}>{displayComponent}</Suspense>
       ) : (
         displayComponent
       )}

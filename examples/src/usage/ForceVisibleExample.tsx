@@ -22,7 +22,7 @@ export default function ForceVisibleExample() {
         {[...Array(5)].map((_, index) => (
           <LazyLoad
             key={`demo3-${index}`}
-            InvisibleComponent='Invisible'
+            fallback='Invisible'
             rootId='forceVisible'
             as='li'
             className='row'

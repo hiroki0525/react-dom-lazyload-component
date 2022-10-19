@@ -26,7 +26,7 @@ describe('LazyLoad', () => {
   const defaultProps: ExcludeChildrenLazyLoadProps = {
     rootId,
     'data-testid': testId,
-    InvisibleComponent: invisibleText,
+    fallback: invisibleText,
   };
 
   afterEach(() => {
