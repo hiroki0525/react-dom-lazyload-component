@@ -105,5 +105,11 @@
     "branches": [
       "main"
     ]
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "4500 ms"
+    }
+  ]
 }
