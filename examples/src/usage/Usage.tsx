@@ -47,6 +47,7 @@ export default function Usage() {
           id='suspense'
           InvisibleComponent='Invisible'
           rootMargin='200px 0px'
+          suspense
         >
           <SuspenseExample />
         </LazyLoad>

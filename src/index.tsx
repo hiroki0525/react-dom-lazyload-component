@@ -5,7 +5,6 @@ import {
   ElementType,
   ReactNode,
   Suspense,
-  isValidElement,
   startTransition,
 } from 'react';
 
@@ -17,6 +16,7 @@ export type LazyLoadProps = {
   rootId?: string;
   once?: boolean;
   onVisible?: () => void;
+  suspense?: boolean;
   // eslint-disable-next-line
   [x: string]: any;
 } & Omit<IntersectionObserverInit, 'root'>;
@@ -30,6 +30,7 @@ export default function LazyLoad({
   threshold,
   once = true,
   onVisible,
+  suspense = false,
   as: Tag = 'div',
   ...props
 }: LazyLoadProps): JSX.Element {
@@ -87,16 +88,9 @@ export default function LazyLoad({
     };
   }, [once, rootMargin, threshold]);
 
-  const isLazyChildren =
-    isValidElement(children) &&
-    // TODO: TypeScript can't check $$typeof
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    children.type.$$typeof === Symbol.for('react.lazy');
-
   return (
     <Tag ref={targetRef} {...props}>
-      {isLazyChildren ? (
+      {suspense ? (
         <Suspense fallback={InvisibleComponent}>
           {isVisible ? children : InvisibleComponent}
         </Suspense>
