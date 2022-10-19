@@ -19,7 +19,7 @@ export type LazyLoadProps = {
   suspense?: boolean;
   // eslint-disable-next-line
   [x: string]: any;
-} & Omit<IntersectionObserverInit, 'root'>;
+};
 
 export default function LazyLoad({
   fallback,
@@ -27,7 +27,6 @@ export default function LazyLoad({
   forceVisible = false,
   rootId,
   rootMargin,
-  threshold,
   once = true,
   onVisible,
   suspense = false,
@@ -73,7 +72,7 @@ export default function LazyLoad({
     const options = {
       root: rootRef.current,
       rootMargin,
-      threshold,
+      threshold: 0,
     };
     const checkInViewportAndShow: IntersectionObserverCallback = entries => {
       const entry = entries[0];
@@ -95,7 +94,7 @@ export default function LazyLoad({
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [isVisible, once, rootMargin, threshold]);
+  }, [isVisible, once, rootMargin]);
 
   const displayComponent = isVisible ? children : fallback;
 
