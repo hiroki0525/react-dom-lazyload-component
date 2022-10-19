@@ -37,6 +37,11 @@ export default function LazyLoad({
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
   const targetRef = useRef<HTMLElement>();
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const cleanupObserver = (): void => {
+    observerRef.current?.disconnect();
+    observerRef.current = null;
+  };
 
   useEffect(() => {
     if (!rootId) {
@@ -55,6 +60,9 @@ export default function LazyLoad({
   }, [isVisible, onVisible]);
 
   useEffect(() => {
+    if (observerRef.current) {
+      return;
+    }
     const el = targetRef.current;
     if (!el) {
       return;
@@ -64,16 +72,13 @@ export default function LazyLoad({
       rootMargin,
       threshold,
     };
-    const checkInViewportAndShow: IntersectionObserverCallback = (
-      entries,
-      observer
-    ) => {
+    const checkInViewportAndShow: IntersectionObserverCallback = entries => {
       const entry = entries[0];
       if (entry.isIntersecting) {
         startTransition(() => {
           setIsVisible(true);
         });
-        once && observer.disconnect();
+        once && cleanupObserver();
       } else {
         once ||
           startTransition(() => {
@@ -81,11 +86,12 @@ export default function LazyLoad({
           });
       }
     };
-    const observer = new IntersectionObserver(checkInViewportAndShow, options);
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-    };
+    observerRef.current = new IntersectionObserver(
+      checkInViewportAndShow,
+      options
+    );
+    observerRef.current.observe(el);
+    return cleanupObserver;
   }, [once, rootMargin, threshold]);
 
   const displayComponent = isVisible ? children : fallback;
