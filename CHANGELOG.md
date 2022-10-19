@@ -1,3 +1,30 @@
+# [4.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v3.0.1...v4.0.0) (2022-10-19)
+
+
+### Code Refactoring
+
+* remove threshold ([a5e3eba](https://github.com/hiroki0525/react-dom-lazyload-component/commit/a5e3ebaa0d042f13031860a6a019b5d2be9a15ab))
+* rename `InvisibleComponent` to `fallback` ([0b25cfe](https://github.com/hiroki0525/react-dom-lazyload-component/commit/0b25cfeeeb290560673f44abb3cc3091a031da9b))
+
+
+### Features
+
+* add suspense prop ([19fc57c](https://github.com/hiroki0525/react-dom-lazyload-component/commit/19fc57cefe018bfc0921ebc7ce13d848701edadc))
+* change props to make easy to use IntersectionObserver ([851ac6d](https://github.com/hiroki0525/react-dom-lazyload-component/commit/851ac6d2c9b579d362220ddddc83353f217daf13))
+
+
+### Performance Improvements
+
+* cache IntersectionObserver ([2cd4473](https://github.com/hiroki0525/react-dom-lazyload-component/commit/2cd447317144a0c9b9fa6ac8060abd5c7d092158))
+
+
+### BREAKING CHANGES
+
+* Please use `direction` and `margin` props instead of `rootMargin` .
+* remove `threshold` props. `threshold` is always `0` .
+* You should rename `InvisibleComponent` to `fallback` .
+* no longer automatically add Suspense. you should add `suspense` if you need it.
+
 ## [3.0.1](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v3.0.0...v3.0.1) (2022-10-19)
 
 
