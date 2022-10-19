@@ -1,5 +1,8 @@
 import 'expect-puppeteer';
 
+const waitForTimeout = (milliseconds: number): Promise<void> =>
+  new Promise(r => setTimeout(r, milliseconds));
+
 describe('Browser', () => {
   jest.setTimeout(10000);
 
@@ -40,7 +43,7 @@ describe('Browser', () => {
         rowHeight,
         itemsLength
       );
-      await page.waitForTimeout(500);
+      await waitForTimeout(500);
     };
 
     describe('once is true(default) or false', () => {
@@ -160,7 +163,7 @@ describe('Browser', () => {
 
       describe(`after about ${timeout} ms`, () => {
         beforeAll(async () => {
-          await page.waitForTimeout(timeout);
+          await waitForTimeout(timeout);
           await setLazyLoadTexts(forceVisibleId);
         });
 
@@ -216,7 +219,7 @@ describe('Browser', () => {
           await page.evaluate(() => {
             window.scrollTo(0, window.innerHeight);
           });
-          await page.waitForTimeout(2000);
+          await waitForTimeout(2000);
           await setSuspenseInnerText();
         });
 
