@@ -88,16 +88,14 @@ export default function LazyLoad({
     };
   }, [once, rootMargin, threshold]);
 
+  const displayComponent = isVisible ? children : InvisibleComponent;
+
   return (
     <Tag ref={targetRef} {...props}>
       {suspense ? (
-        <Suspense fallback={InvisibleComponent}>
-          {isVisible ? children : InvisibleComponent}
-        </Suspense>
-      ) : isVisible ? (
-        children
+        <Suspense fallback={InvisibleComponent}>{displayComponent}</Suspense>
       ) : (
-        InvisibleComponent
+        displayComponent
       )}
     </Tag>
   );
