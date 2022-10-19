@@ -1,5 +1,8 @@
 import 'expect-puppeteer';
 
+const waitForTimeout = (milliseconds: number): Promise<void> =>
+  new Promise(r => setTimeout(r, milliseconds));
+
 describe('Browser', () => {
   jest.setTimeout(10000);
 
@@ -34,13 +37,13 @@ describe('Browser', () => {
       const rootDom = await page.$(selectorId);
       await page.evaluate(
         (el, rHeight, iLength) => {
-          el.scrollTop = rHeight * iLength;
+          el && (el.scrollTop = rHeight * iLength);
         },
         rootDom,
         rowHeight,
         itemsLength
       );
-      await page.waitForTimeout(500);
+      await waitForTimeout(500);
     };
 
     describe('once is true(default) or false', () => {
@@ -160,7 +163,7 @@ describe('Browser', () => {
 
       describe(`after about ${timeout} ms`, () => {
         beforeAll(async () => {
-          await page.waitForTimeout(timeout);
+          await waitForTimeout(timeout);
           await setLazyLoadTexts(forceVisibleId);
         });
 
@@ -216,7 +219,7 @@ describe('Browser', () => {
           await page.evaluate(() => {
             window.scrollTo(0, window.innerHeight);
           });
-          await page.waitForTimeout(2000);
+          await waitForTimeout(2000);
           await setSuspenseInnerText();
         });
 
@@ -226,65 +229,6 @@ describe('Browser', () => {
 
         it('not called to request code splitted file', () => {
           expect(codeSplittedRequestUrl).not.toBeNull();
-        });
-      });
-    });
-
-    describe('autoCalculateHeight is true', () => {
-      const autoCalculateHeightId = '#autoCalculateHeight';
-      let rowTextHeights: [string, string][] = [];
-      const setRowTextHeights = async (): Promise<void> => {
-        rowTextHeights = await page.$$eval(
-          `${autoCalculateHeightId} > li`,
-          items =>
-            items.reduce<[string, string][]>((results, item) => {
-              results.push([
-                item.textContent ?? '',
-                window.getComputedStyle(item).getPropertyValue('height'),
-              ]);
-              return results;
-            }, [])
-        );
-      };
-      const getVisibleHeights = (): typeof rowTextHeights =>
-        rowTextHeights.filter(
-          rowTextHeight =>
-            rowTextHeight[0] === visibleText &&
-            rowTextHeight[1] === `${rowHeight}px`
-        );
-      const getInvisibleHeights = (): typeof rowTextHeights =>
-        rowTextHeights.filter(
-          rowTextHeight =>
-            rowTextHeight[0] === invisibleText &&
-            rowTextHeight[1] === `${rowHeight}px`
-        );
-
-      describe('initial render', () => {
-        beforeAll(async () => {
-          await setRowTextHeights();
-        });
-
-        it('visible row height is 100px', () => {
-          expect(getVisibleHeights().length).toBe(5);
-        });
-
-        it('invisible row height is 100px', () => {
-          expect(getInvisibleHeights().length).toBe(5);
-        });
-
-        describe('scroll', () => {
-          beforeAll(async () => {
-            await scrollList(autoCalculateHeightId, 0.5);
-            await setRowTextHeights();
-          });
-
-          it('visible row height is 100px', () => {
-            expect(getVisibleHeights().length).toBe(6);
-          });
-
-          it('invisible row height is 100px', () => {
-            expect(getInvisibleHeights().length).toBe(4);
-          });
         });
       });
     });
