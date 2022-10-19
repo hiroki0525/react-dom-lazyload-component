@@ -42,16 +42,11 @@ export default function LazyLoad({
       return;
     }
     const rootElement = document.getElementById(rootId);
-    if (rootElement) {
-      rootRef.current = rootElement;
-    }
+    rootElement && (rootRef.current = rootElement);
   }, [rootId]);
 
   useEffect(() => {
-    if (!isVisible || !onVisible) {
-      return;
-    }
-    onVisible();
+    isVisible && onVisible && onVisible();
   }, [isVisible, onVisible]);
 
   useEffect(() => {

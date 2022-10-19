@@ -28,7 +28,11 @@
             "warn",
             { "vars": "all", "varsIgnorePattern": "^_", "args": "after-used", "argsIgnorePattern": "^_" }
         ],
-        "arrow-body-style": ["error", "as-needed"]
+        "arrow-body-style": ["error", "as-needed"],
+        "no-unused-expressions": [
+            "error",
+            { "allowShortCircuit": true }
+        ]
     },
     "overrides": [
         {

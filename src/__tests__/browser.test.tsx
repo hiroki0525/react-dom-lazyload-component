@@ -34,7 +34,7 @@ describe('Browser', () => {
       const rootDom = await page.$(selectorId);
       await page.evaluate(
         (el, rHeight, iLength) => {
-          el.scrollTop = rHeight * iLength;
+          el && (el.scrollTop = rHeight * iLength);
         },
         rootDom,
         rowHeight,
