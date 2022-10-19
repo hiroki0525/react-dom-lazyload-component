@@ -24,18 +24,18 @@ jobs:
       - name: Build
         run: npm run build
       - name: Deploy Package
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         env:
           NPM_TOKEN: ${{secrets.NPM_TOKEN}}
           GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
         run: npx semantic-release
       - name: Set Git Config
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         env:
           GIT_EMAIL: ${{secrets.GIT_EMAIL}}
         run: |
           git config --global user.email "$GIT_EMAIL"
           git config --global user.name "hiroki0525"
       - name: Deploy Examples
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: npm run deploy:examples

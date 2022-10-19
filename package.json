@@ -103,7 +103,7 @@
       "@semantic-release/release-notes-generator"
     ],
     "branches": [
-      "main"
+      "master"
     ]
   },
   "size-limit": [
