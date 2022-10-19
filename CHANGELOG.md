@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.3.0...v3.0.0) (2022-05-25)
+
+
+### Performance Improvements
+
+* add transition ([7e1d8ca](https://github.com/hiroki0525/react-dom-lazyload-component/commit/7e1d8ca02d9110108af87367d4f89ae583dd7b42))
+
+
+### BREAKING CHANGES
+
+* `LazyLoad` internally use `startTransition`. It is necessary to install React v18.
+
 # [2.3.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.2.0...v2.3.0) (2022-05-22)
 
 
