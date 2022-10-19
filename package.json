@@ -22,6 +22,7 @@
     "posttest": "npm run uninstall-local-pkg",
     "lint": "eslint src/",
     "prettier": "prettier src/",
+    "size": "size-limit",
     "clean": "rm -rf dist"
   },
   "workspaces": [
@@ -54,6 +55,8 @@
     "@semantic-release/github": "^8.0.6",
     "@semantic-release/npm": "^9.0.1",
     "@semantic-release/release-notes-generator": "^10.0.3",
+    "@size-limit/preset-small-lib": "^8.1.0",
+    "@size-limit/time": "^8.1.0",
     "@testing-library/react": "^13.4.0",
     "@types/expect-puppeteer": "^5.0.1",
     "@types/jest": "^29.2.0",
@@ -84,6 +87,7 @@
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-your-function": "^0.4.0",
     "semantic-release": "^19.0.5",
+    "size-limit": "^8.1.0",
     "terser": "^5.15.1",
     "ts-jest": "^29.0.3",
     "ts-loader": "^9.4.1",
@@ -103,7 +107,13 @@
       "@semantic-release/release-notes-generator"
     ],
     "branches": [
-      "main"
+      "master"
     ]
-  }
+  },
+  "size-limit": [
+    {
+      "path": "dist/index.js",
+      "limit": "4500 ms"
+    }
+  ]
 }

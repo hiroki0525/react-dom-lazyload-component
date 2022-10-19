@@ -14,7 +14,7 @@ export default function Usage() {
           {[...Array(10)].map((_, index) => (
             <LazyLoad
               key={`demo1-${index}`}
-              InvisibleComponent='Invisible'
+              fallback='Invisible'
               rootId='onceIsTrue'
               as='li'
               className='row'
@@ -30,7 +30,7 @@ export default function Usage() {
           {[...Array(10)].map((_, index) => (
             <LazyLoad
               key={`demo2-${index}`}
-              InvisibleComponent='Invisible'
+              fallback='Invisible'
               rootId='onceIsFalse'
               as='li'
               className='row'
@@ -43,11 +43,7 @@ export default function Usage() {
       </section>
       <section>
         <h2>Suspense</h2>
-        <LazyLoad
-          id='suspense'
-          InvisibleComponent='Invisible'
-          rootMargin='200px 0px'
-        >
+        <LazyLoad id='suspense' fallback='Invisible' margin='200px' suspense>
           <SuspenseExample />
         </LazyLoad>
       </section>

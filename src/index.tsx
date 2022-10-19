@@ -5,37 +5,45 @@ import {
   ElementType,
   ReactNode,
   Suspense,
-  isValidElement,
   startTransition,
 } from 'react';
 
 export type LazyLoadProps = {
-  InvisibleComponent?: ReactNode;
+  fallback?: ReactNode;
   children: ReactNode;
   as?: ElementType;
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
   onVisible?: () => void;
+  suspense?: boolean;
+  direction?: 'vertical' | 'horizontal';
+  margin?: string;
   // eslint-disable-next-line
   [x: string]: any;
-} & Omit<IntersectionObserverInit, 'root'>;
+};
 
 export default function LazyLoad({
-  InvisibleComponent = null,
+  fallback,
   children,
   forceVisible = false,
   rootId,
-  rootMargin,
-  threshold,
+  direction = 'vertical',
+  margin = '0px',
   once = true,
   onVisible,
+  suspense = false,
   as: Tag = 'div',
   ...props
 }: LazyLoadProps): JSX.Element {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
   const targetRef = useRef<HTMLElement>();
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const cleanupObserver = (): void => {
+    observerRef.current?.disconnect();
+    observerRef.current = null;
+  };
 
   useEffect(() => {
     if (!rootId) {
@@ -54,25 +62,30 @@ export default function LazyLoad({
   }, [isVisible, onVisible]);
 
   useEffect(() => {
+    if (observerRef.current) {
+      return;
+    }
+    if (once && isVisible) {
+      return;
+    }
     const el = targetRef.current;
     if (!el) {
       return;
     }
+    const rootMargin =
+      direction === 'vertical' ? `${margin} 0px` : `0px ${margin}`;
     const options = {
       root: rootRef.current,
       rootMargin,
-      threshold,
+      threshold: 0,
     };
-    const checkInViewportAndShow: IntersectionObserverCallback = (
-      entries,
-      observer
-    ) => {
+    const checkInViewportAndShow: IntersectionObserverCallback = entries => {
       const entry = entries[0];
       if (entry.isIntersecting) {
         startTransition(() => {
           setIsVisible(true);
         });
-        once && observer.disconnect();
+        once && cleanupObserver();
       } else {
         once ||
           startTransition(() => {
@@ -80,30 +93,22 @@ export default function LazyLoad({
           });
       }
     };
-    const observer = new IntersectionObserver(checkInViewportAndShow, options);
-    observer.observe(el);
-    return () => {
-      observer.disconnect();
-    };
-  }, [once, rootMargin, threshold]);
+    observerRef.current = new IntersectionObserver(
+      checkInViewportAndShow,
+      options
+    );
+    observerRef.current.observe(el);
+    return cleanupObserver;
+  }, [direction, isVisible, margin, once]);
 
-  const isLazyChildren =
-    isValidElement(children) &&
-    // TODO: TypeScript can't check $$typeof
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    children.type.$$typeof === Symbol.for('react.lazy');
+  const displayComponent = isVisible ? children : fallback;
 
   return (
     <Tag ref={targetRef} {...props}>
-      {isLazyChildren ? (
-        <Suspense fallback={InvisibleComponent}>
-          {isVisible ? children : InvisibleComponent}
-        </Suspense>
-      ) : isVisible ? (
-        children
+      {suspense ? (
+        <Suspense fallback={fallback}>{displayComponent}</Suspense>
       ) : (
-        InvisibleComponent
+        displayComponent
       )}
     </Tag>
   );
