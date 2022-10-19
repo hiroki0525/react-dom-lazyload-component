@@ -43,12 +43,7 @@ export default function Usage() {
       </section>
       <section>
         <h2>Suspense</h2>
-        <LazyLoad
-          id='suspense'
-          fallback='Invisible'
-          rootMargin='200px 0px'
-          suspense
-        >
+        <LazyLoad id='suspense' fallback='Invisible' margin='200px' suspense>
           <SuspenseExample />
         </LazyLoad>
       </section>

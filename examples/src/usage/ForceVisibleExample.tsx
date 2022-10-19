@@ -26,7 +26,7 @@ export default function ForceVisibleExample() {
             rootId='forceVisible'
             as='li'
             className='row'
-            rootMargin='-1000px 0px'
+            margin='-1000px'
             forceVisible={forceVisible}
           >
             Visible

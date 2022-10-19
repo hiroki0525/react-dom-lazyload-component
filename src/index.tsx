@@ -17,6 +17,8 @@ export type LazyLoadProps = {
   once?: boolean;
   onVisible?: () => void;
   suspense?: boolean;
+  direction?: 'vertical' | 'horizontal';
+  margin?: string;
   // eslint-disable-next-line
   [x: string]: any;
 };
@@ -26,7 +28,8 @@ export default function LazyLoad({
   children,
   forceVisible = false,
   rootId,
-  rootMargin,
+  direction = 'vertical',
+  margin = '0px',
   once = true,
   onVisible,
   suspense = false,
@@ -69,6 +72,8 @@ export default function LazyLoad({
     if (!el) {
       return;
     }
+    const rootMargin =
+      direction === 'vertical' ? `${margin} 0px` : `0px ${margin}`;
     const options = {
       root: rootRef.current,
       rootMargin,
@@ -94,7 +99,7 @@ export default function LazyLoad({
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [isVisible, once, rootMargin]);
+  }, [direction, isVisible, margin, once]);
 
   const displayComponent = isVisible ? children : fallback;
 
