@@ -1,3 +1,11 @@
+## [3.0.1](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v3.0.0...v3.0.1) (2022-10-19)
+
+
+### Performance Improvements
+
+* remove autoCalculateHeight props ([3b3b2ac](https://github.com/hiroki0525/react-dom-lazyload-component/commit/3b3b2ac8d1929cfa31c6bdca1a2a80273d4bdff6))
+* remove forceVisible effect ([c88fb1b](https://github.com/hiroki0525/react-dom-lazyload-component/commit/c88fb1bb4c0f9ba0cf4fa0f331705b4a880f5098))
+
 # [3.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v2.3.0...v3.0.0) (2022-05-25)
 
 
