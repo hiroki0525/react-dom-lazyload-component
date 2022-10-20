@@ -2,7 +2,7 @@ version = 1
 
 [merge]
 require_automerge_label = true
-method = "squash"
+method = "merge"
 delete_branch_on_merge = true
 optimistic_updates = true
 
