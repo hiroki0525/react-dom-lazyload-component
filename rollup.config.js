@@ -1,6 +1,7 @@
 const typescript = require('@rollup/plugin-typescript');
 const external = require('rollup-plugin-peer-deps-external');
 const packageJson = require('./package.json');
+const { minify } = require('rollup-plugin-swc3');
 
 module.exports = {
   input: 'src/index.tsx',
@@ -13,6 +14,6 @@ module.exports = {
       compact: true,
     },
   ],
-  plugins: [external(), typescript()],
+  plugins: [external(), typescript(), minify()],
   external: ['react', 'react-dom'],
 };
