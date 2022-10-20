@@ -35,7 +35,8 @@
   "keywords": [
     "React",
     "JavaScript",
-    "TypeScript"
+    "TypeScript",
+    "IntersectionObserver"
   ],
   "author": "Hiroki Miyaji",
   "license": "MIT",
