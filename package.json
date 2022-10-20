@@ -36,7 +36,8 @@
     "React",
     "JavaScript",
     "TypeScript",
-    "IntersectionObserver"
+    "IntersectionObserver",
+    "Core Web Vitals"
   ],
   "author": "Hiroki Miyaji",
   "license": "MIT",
