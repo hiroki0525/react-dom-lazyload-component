@@ -1,9 +1,10 @@
-name: Create Pull Request
+name: Create Pull Request to Develop
 
 on:
   push:
     branches:
-      - 'develop'
+      - '*'
+      - '!master'
 
 jobs:
   create-pull-request:
@@ -15,9 +16,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          title: 'Develop'
-          branch: develop
-          assignees: hiroki0525
+          title: 'Please Change Title'
           reviewers: hiroki0525
           team-reviewers: |
             owners
