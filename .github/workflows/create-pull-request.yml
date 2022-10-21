@@ -1,0 +1,24 @@
+name: Create Pull Request
+
+on:
+  push:
+    branches:
+      - 'develop'
+
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          title: 'Develop'
+          branch: develop
+          assignees: hiroki0525
+          reviewers: hiroki0525
+          team-reviewers: |
+            owners
+            maintainers
