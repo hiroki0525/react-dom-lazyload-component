@@ -24,4 +24,4 @@ jobs:
       - name: Create Pull Request
         if: steps.check_pr.outputs.COUNT == 0
         run: |
-          gh pr create -a ${{ github.actor }} -B develop -t 'Please Change Title' -b 'Please Change Body' -r hiroki0525
+          gh pr create -a ${{ github.actor }} -B develop -t 'Please Change Title' -d -b 'Please Change Body' -r hiroki0525
