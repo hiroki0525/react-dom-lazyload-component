@@ -28,13 +28,13 @@
     "predeploy:examples": "npm run install-local-pkg",
     "deploy:examples": "npm run -w examples deploy",
     "postdeploy:examples": "npm run uninstall-local-pkg",
-    "build": "npm run clean && rollup -c",
-    "postbuild": "cp dist/es/index.d.ts dist/index.d.ts && cp dist/es/index.d.ts.map dist/index.d.ts.map && find dist | grep -E '^dist/.+/index\\.d\\.ts(\\.map)?$' | xargs rm -rf",
+    "prebuild": "rm -rf dist",
+    "build": "rollup -c",
+    "postbuild": "tsc --emitDeclarationOnly",
     "test": "jest --runInBand",
     "posttest": "npm run uninstall-local-pkg",
     "lint": "eslint src/",
-    "prettier": "prettier src/",
-    "clean": "rm -rf dist"
+    "prettier": "prettier src/"
   },
   "workspaces": [
     "examples"
