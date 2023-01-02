@@ -1,3 +1,10 @@
+## [4.1.5](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.4...v4.1.5) (2023-01-02)
+
+
+### Bug Fixes
+
+* unable to import package when develop ([df4eae2](https://github.com/hiroki0525/react-dom-lazyload-component/commit/df4eae22d75f8603df44a739f1ad1a4a1ad5759d))
+
 ## [4.1.4](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.3...v4.1.4) (2023-01-02)
 
 
