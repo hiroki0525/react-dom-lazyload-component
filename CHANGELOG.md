@@ -1,3 +1,10 @@
+## [4.1.1](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.0...v4.1.1) (2023-01-02)
+
+
+### Bug Fixes
+
+* add index.d.ts.map ([29de8d1](https://github.com/hiroki0525/react-dom-lazyload-component/commit/29de8d1d8e1dee90e8ce41fe27a15de5bfe15c45))
+
 # [4.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.0.0...v4.1.0) (2023-01-02)
 
 
