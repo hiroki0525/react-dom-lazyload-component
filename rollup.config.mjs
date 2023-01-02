@@ -1,19 +1,60 @@
 import typescript from '@rollup/plugin-typescript';
-import external from 'rollup-plugin-peer-deps-external';
-import packageJson from './package.json';
 import terser from '@rollup/plugin-terser';
+import dts from 'rollup-plugin-dts';
+import tsConfigJson from './tsconfig.json' assert { type: 'json' };
 
-export default {
-  input: 'src/index.tsx',
+const name = 'ReactDomLazyloadComponent';
+const input = 'src/index.tsx';
+const outputFormats = ['cjs', 'umd', 'es'];
+
+const buildTsConfig = ({ format, sourceMap }) => {
+  const extraConfig =
+    format === 'umd'
+      ? { compilerOptions: { target: 'es5', sourceMap } }
+      : { compilerOptions: { sourceMap } };
+  return typescript({ ...tsConfigJson, ...extraConfig });
+};
+
+const productionConfigs = outputFormats.map(format => ({
+  input,
   output: [
     {
-      file: packageJson.main,
-      format: 'cjs',
-      sourcemap: true,
-      name: 'react-lib',
+      file: `dist/${format}/index.js`,
+      format,
+      sourcemap: tsConfigJson.compilerOptions.sourceMap,
+      name,
       compact: true,
     },
   ],
-  plugins: [external(), typescript(), terser()],
-  external: ['react', 'react-dom'],
-};
+  plugins: [
+    buildTsConfig({
+      format,
+      sourceMap: tsConfigJson.compilerOptions.sourceMap,
+    }),
+    terser(),
+  ],
+}));
+
+const developmentConfigs = outputFormats.map(format => ({
+  input,
+  output: [
+    {
+      file: `dist/${format}/index.development.js`,
+      format,
+      name,
+    },
+  ],
+  plugins: [buildTsConfig({ format, sourceMap: false })],
+}));
+
+export default [
+  ...productionConfigs,
+  ...developmentConfigs,
+  // generate single file.
+  // after build, delete all .d.ts files without index.d.ts
+  {
+    input: './dist/es/index.d.ts',
+    output: [{ file: 'dist/index.d.ts', format: 'es' }],
+    plugins: [dts()],
+  },
+];

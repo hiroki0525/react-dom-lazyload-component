@@ -2,7 +2,18 @@
   "name": "react-dom-lazyload-component",
   "version": "4.0.0",
   "description": "React Lazy Load Component for your Website Performance🚀",
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/es/index.js",
+  "exports": {
+    "development": {
+      "require": "./dist/cjs/index.development.js",
+      "default": "./dist/es/index.development.js"
+    },
+    "production": {
+      "require": "./dist/cjs/index.js",
+      "default": "./dist/es/index.js"
+    }
+  },
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -18,6 +29,7 @@
     "deploy:examples": "npm run -w examples deploy",
     "postdeploy:examples": "npm run uninstall-local-pkg",
     "build": "npm run clean && rollup -c",
+    "postbuild": "find dist | grep '\\.d\\.ts\\|api$' | grep -v '^dist/index\\.d\\.ts$' | xargs rm -rf",
     "test": "jest --runInBand",
     "posttest": "npm run uninstall-local-pkg",
     "lint": "eslint src/",
@@ -86,6 +98,7 @@
     "react-dom": "18.2.0",
     "react-test-renderer": "18.2.0",
     "rollup": "3.9.0",
+    "rollup-plugin-dts": "^5.1.0",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "semantic-release": "19.0.5",
     "ts-jest": "29.0.3",
