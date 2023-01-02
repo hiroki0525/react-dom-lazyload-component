@@ -2,7 +2,7 @@ name: Check Bundle Size
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
     types: [synchronize, opened, reopened]
 
