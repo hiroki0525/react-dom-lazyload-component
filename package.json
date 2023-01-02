@@ -3,7 +3,7 @@
   "version": "4.1.3",
   "description": "React Lazy Load Component for your Website Performance🚀",
   "main": "dist/cjs/index.js",
-  "module": "dist/es/index.js",
+  "module": "dist/index.js",
   "exports": {
     "development": {
       "require": "./dist/cjs/index.development.js",
@@ -11,7 +11,7 @@
     },
     "production": {
       "require": "./dist/cjs/index.js",
-      "default": "./dist/es/index.js"
+      "default": "./dist/index.js"
     }
   },
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
     "postdeploy:examples": "npm run uninstall-local-pkg",
     "prebuild": "rm -rf dist",
     "build": "rollup -c",
-    "postbuild": "cp dist/es/index.d.ts dist/index.d.ts && cp dist/es/index.d.ts.map dist/index.d.ts.map && find dist | grep -E '^dist/.+/index\\.d\\.ts(\\.map)?$' | xargs rm -rf",
+    "postbuild": "find dist | grep -E '^dist/.+/index\\.d\\.ts(\\.map)?$' | xargs rm -rf",
     "test": "jest --runInBand",
     "posttest": "npm run uninstall-local-pkg",
     "lint": "eslint src/",
@@ -100,7 +100,7 @@
     "semantic-release": "19.0.5",
     "ts-jest": "29.0.3",
     "ts-loader": "9.4.2",
-    "typescript": "4.8.4"
+    "typescript": "4.9.4"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
@@ -132,7 +132,7 @@
         "path": "umd/index.js"
       },
       {
-        "path": "es/index.js"
+        "path": "index.js"
       }
     ]
   }

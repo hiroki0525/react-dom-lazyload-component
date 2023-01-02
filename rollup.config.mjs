@@ -19,7 +19,7 @@ const productionConfigs = outputFormats.map(format => ({
   input,
   output: [
     {
-      file: `dist/${format}/index.js`,
+      file: format === 'es' ? 'dist/index.js' : `dist/${format}/index.js`,
       format,
       sourcemap: tsConfigJson.compilerOptions.sourceMap,
       name,
@@ -40,7 +40,10 @@ const developmentConfigs = outputFormats.map(format => ({
   input,
   output: [
     {
-      file: `dist/${format}/index.development.js`,
+      file:
+        format === 'es'
+          ? 'dist/index.development.js'
+          : `dist/${format}/index.development.js`,
       format,
       name,
     },
