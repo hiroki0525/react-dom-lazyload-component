@@ -1,3 +1,10 @@
+## [4.1.3](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.2...v4.1.3) (2023-01-02)
+
+
+### Bug Fixes
+
+* remove multiple index.d.ts ([bf9178b](https://github.com/hiroki0525/react-dom-lazyload-component/commit/bf9178bbed9b238e9ea3a9b5195f77fadcad6675))
+
 ## [4.1.2](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.1...v4.1.2) (2023-01-02)
 
 
