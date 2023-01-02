@@ -1,6 +1,5 @@
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
-import dts from 'rollup-plugin-dts';
 import tsConfigJson from './tsconfig.json' assert { type: 'json' };
 
 const name = 'ReactDomLazyloadComponent';
@@ -47,14 +46,4 @@ const developmentConfigs = outputFormats.map(format => ({
   plugins: [buildTsConfig({ format, sourceMap: false })],
 }));
 
-export default [
-  ...productionConfigs,
-  ...developmentConfigs,
-  // generate single file.
-  // after build, delete all .d.ts files without index.d.ts
-  {
-    input: './dist/es/index.d.ts',
-    output: [{ file: 'dist/index.d.ts', format: 'es' }],
-    plugins: [dts()],
-  },
-];
+export default [...productionConfigs, ...developmentConfigs];
