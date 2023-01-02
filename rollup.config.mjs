@@ -1,6 +1,7 @@
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
 import tsConfigJson from './tsconfig.json' assert { type: 'json' };
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const name = 'ReactDomLazyloadComponent';
 const input = 'src/index.tsx';
@@ -26,6 +27,7 @@ const productionConfigs = outputFormats.map(format => ({
     },
   ],
   plugins: [
+    peerDepsExternal(),
     buildTsConfig({
       format,
       sourceMap: tsConfigJson.compilerOptions.sourceMap,
@@ -43,7 +45,7 @@ const developmentConfigs = outputFormats.map(format => ({
       name,
     },
   ],
-  plugins: [buildTsConfig({ format, sourceMap: false })],
+  plugins: [peerDepsExternal(), buildTsConfig({ format, sourceMap: false })],
 }));
 
 export default [...productionConfigs, ...developmentConfigs];
