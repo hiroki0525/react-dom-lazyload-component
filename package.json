@@ -29,7 +29,7 @@
     "deploy:examples": "npm run -w examples deploy",
     "postdeploy:examples": "npm run uninstall-local-pkg",
     "build": "npm run clean && rollup -c",
-    "postbuild": "find dist | grep '\\.d\\.ts\\|api$' | grep -v '^dist/index\\.d\\.ts$' | xargs rm -rf",
+    "postbuild": "cp dist/es/index.d.ts dist/index.d.ts && cp dist/es/index.d.ts.map dist/index.d.ts.map && find dist | grep -E '^dist/.+/index\\.d\\.ts(\\.map)?$' | xargs rm -rf",
     "test": "jest --runInBand",
     "posttest": "npm run uninstall-local-pkg",
     "lint": "eslint src/",
