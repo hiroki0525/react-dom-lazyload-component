@@ -1,3 +1,10 @@
+## [4.1.2](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.1...v4.1.2) (2023-01-02)
+
+
+### Bug Fixes
+
+* enable to import `LazyLoadProps` ([7c0a016](https://github.com/hiroki0525/react-dom-lazyload-component/commit/7c0a0160280cf2b69932fdc1cccc7de105650052))
+
 ## [4.1.1](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.0...v4.1.1) (2023-01-02)
 
 
