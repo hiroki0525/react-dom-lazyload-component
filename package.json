@@ -7,7 +7,7 @@
   "exports": {
     "development": {
       "require": "./dist/cjs/index.development.js",
-      "default": "./dist/es/index.development.js"
+      "default": "./dist/index.development.js"
     },
     "production": {
       "require": "./dist/cjs/index.js",
