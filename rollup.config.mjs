@@ -1,9 +1,9 @@
-const typescript = require('@rollup/plugin-typescript');
-const external = require('rollup-plugin-peer-deps-external');
-const packageJson = require('./package.json');
-const terser = require('@rollup/plugin-terser');
+import typescript from '@rollup/plugin-typescript';
+import external from 'rollup-plugin-peer-deps-external';
+import packageJson from './package.json';
+import terser from '@rollup/plugin-terser';
 
-module.exports = {
+export default {
   input: 'src/index.tsx',
   output: [
     {
