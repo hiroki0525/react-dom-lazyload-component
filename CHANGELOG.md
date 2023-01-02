@@ -1,3 +1,16 @@
+# [4.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.0.0...v4.1.0) (2023-01-02)
+
+
+### Features
+
+* support not only cjs but also esm and umd ([1fbe49c](https://github.com/hiroki0525/react-dom-lazyload-component/commit/1fbe49c050d24f22a52185898ac4de0df33818e1))
+* transpile ES2017 ([0ea69ea](https://github.com/hiroki0525/react-dom-lazyload-component/commit/0ea69ea5e3ea2d8f0594731d5559f2eda4eb5b84))
+
+
+### Performance Improvements
+
+* add.minify ([#100](https://github.com/hiroki0525/react-dom-lazyload-component/issues/100)) ([402347b](https://github.com/hiroki0525/react-dom-lazyload-component/commit/402347bc3bf1f1e19701d462ddd0bd762a49d93d))
+
 # [4.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v3.0.1...v4.0.0) (2022-10-19)
 
 
