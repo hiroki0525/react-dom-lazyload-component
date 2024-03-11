@@ -1,5 +1,3 @@
-import 'expect-puppeteer';
-
 const waitForTimeout = (milliseconds: number): Promise<void> =>
   new Promise(r => setTimeout(r, milliseconds));
 
@@ -189,7 +187,8 @@ describe('Browser', () => {
       beforeAll(async () => {
         await page.setRequestInterception(true);
         page.on('request', interceptedRequest => {
-          if (interceptedRequest.isInterceptResolutionHandled()) return;
+          if ((interceptedRequest as any).isInterceptResolutionHandled())
+            return;
           const requestUrl = interceptedRequest.url();
           if (requestUrl.indexOf(suspenseExampleComponentName) > -1) {
             codeSplittedRequestUrl = requestUrl;
