@@ -12,23 +12,24 @@
  "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",
  "license": "ISC",
  "devDependencies": {
-  "autoprefixer": "^10.4.7",
-  "css-loader": "^6.7.1",
+  "autoprefixer": "^10.4.18",
+  "css-loader": "^6.10.0",
   "file-loader": "^6.2.0",
-  "gh-pages": "^4.0.0",
-  "html-webpack-plugin": "^5.5.0",
-  "postcss": "^8.4.13",
-  "postcss-loader": "^7.0.1",
-  "style-loader": "^3.3.1",
-  "tailwindcss": "^3.0.24",
-  "ts-loader": "^9.2.8",
+  "gh-pages": "^6.1.1",
+  "html-webpack-plugin": "^5.6.0",
+  "postcss": "^8.4.35",
+  "postcss-loader": "^8.1.1",
+  "style-loader": "^3.3.4",
+  "tailwindcss": "^3.4.1",
+  "ts-loader": "^9.5.1",
   "url-loader": "^4.1.1",
-  "web-vitals": "^3.0.4",
-  "webpack": "^5.71.0",
-  "webpack-cli": "^4.9.2",
-  "webpack-dev-server": "^4.7.4"
+  "web-vitals": "^3.5.2",
+  "webpack": "^5.90.3",
+  "webpack-cli": "^5.1.4",
+  "webpack-dev-server": "^5.0.2"
  },
  "dependencies": {
-  "react-router-dom": "^6.3.0"
+  "react-dom-lazyload-component": "file:../examples/react-dom-lazyload-component-4.1.5.tgz",
+  "react-router-dom": "^6.22.3"
  }
 }
