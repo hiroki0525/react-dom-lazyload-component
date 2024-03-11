@@ -43,6 +43,7 @@ export default function LazyLoad({
 
   if (!isVisible && forceVisible) {
     setIsVisible(true);
+    onVisible && onVisible();
   }
 
   const cleanupObserver = (): void => {
@@ -57,10 +58,6 @@ export default function LazyLoad({
     const rootElement = document.getElementById(rootId);
     rootElement && (rootRef.current = rootElement);
   }, [rootId]);
-
-  useEffect(() => {
-    isVisible && onVisible && onVisible();
-  }, [isVisible, onVisible]);
 
   useEffect(() => {
     if (observerRef.current) {
@@ -86,6 +83,7 @@ export default function LazyLoad({
         startTransition(() => {
           setIsVisible(true);
         });
+        onVisible && onVisible();
         once && cleanupObserver();
       } else {
         once ||
@@ -100,7 +98,7 @@ export default function LazyLoad({
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [direction, isVisible, margin, once]);
+  }, [direction, isVisible, margin, onVisible, once]);
 
   const displayComponent = isVisible ? children : fallback;
 
