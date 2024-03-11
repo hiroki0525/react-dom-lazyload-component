@@ -35,7 +35,7 @@ export default function LazyLoad({
   suspense = false,
   as: Tag = 'div',
   ...props
-}: LazyLoadProps): JSX.Element {
+}: LazyLoadProps) {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
   const targetRef = useRef<HTMLElement>();
