@@ -40,6 +40,11 @@ export default function LazyLoad({
   const rootRef = useRef<HTMLElement>();
   const targetRef = useRef<HTMLElement>();
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  if (!isVisible && forceVisible) {
+    setIsVisible(true);
+  }
+
   const cleanupObserver = (): void => {
     observerRef.current?.disconnect();
     observerRef.current = null;
@@ -52,10 +57,6 @@ export default function LazyLoad({
     const rootElement = document.getElementById(rootId);
     rootElement && (rootRef.current = rootElement);
   }, [rootId]);
-
-  useEffect(() => {
-    setIsVisible(forceVisible);
-  }, [forceVisible]);
 
   useEffect(() => {
     isVisible && onVisible && onVisible();
