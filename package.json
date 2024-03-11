@@ -135,5 +135,6 @@
         "path": "index.js"
       }
     ]
-  }
+  },
+  "packageManager": "pnpm@8.15.4"
 }
