@@ -11,7 +11,7 @@ if (dependencies) {
     .map(entry => `${entry[0]}@${entry[1]}`)
     .join(' ');
   try {
-    await exec(`npm i ${installDepsCommand} --force`);
+    await exec(`pnpm i ${installDepsCommand} --force`);
   } catch (e) {
     console.error(e);
     process.exit(1);
@@ -23,7 +23,7 @@ if (devDependencies) {
     .map(entry => `${entry[0]}@${entry[1]}`)
     .join(' ');
   try {
-    await exec(`npm i -D ${installDevDepsCommand} --force`);
+    await exec(`pnpm i -D ${installDevDepsCommand} --force`);
   } catch (e) {
     console.error(e);
     process.exit(1);

@@ -16,6 +16,6 @@ jobs:
       - uses: ./.github/actions/setup
       - name: Test
         run: |
-          npm run test && npm run lint && npm run prettier
+          pnpm t && pnpm lint && pnpm prettier
       - name: Build
         run: pnpm build

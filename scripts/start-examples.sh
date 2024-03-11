@@ -3,13 +3,13 @@
 echo "start examples $1"
 if [ "$1" = "ci" ]; then
   ./scripts/link-to-examples.sh unlink
-  npm run install-local-pkg
-  npm i -w examples
+  pnpm install-local-pkg
+  pnpm i -F examples
 else
   # local
-  npm run uninstall-local-pkg
-  npm install -w examples
-  npm run build
+  pnpm uninstall-local-pkg
+  pnpm install -w examples
+  pnpm build
   ./scripts/link-to-examples.sh link
 fi
-npm run start:examples
+pnpm start:examples

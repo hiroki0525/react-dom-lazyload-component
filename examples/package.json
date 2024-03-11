@@ -5,8 +5,8 @@
  "main": "index.tsx",
  "scripts": {
   "start": "webpack-dev-server --mode=development",
-  "build": "npm run clean && webpack --mode=production",
-  "deploy": "npm run build && gh-pages -d dist",
+  "build": "pnpm clean && webpack --mode=production",
+  "deploy": "pnpm build && gh-pages -d dist",
   "clean": "rm -rf dist"
  },
  "author": "Hiroki Miyaji <nukoprogramming@gmail.com>",

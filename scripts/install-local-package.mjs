@@ -12,14 +12,13 @@ try {
   console.debug(e);
 }
 try {
-  await exec('npm run build && npm pack');
+  await exec('pnpm build && pnpm pack');
   await fs.copyFile(packageName, `${exportDir}/${packageName}`);
   if (!packageJson.dependencies) {
     packageJson.dependencies = {};
   }
-  packageJson.dependencies[
-    'react-dom-lazyload-component'
-  ] = `file:../${baseDir}/${packageName}`;
+  packageJson.dependencies['react-dom-lazyload-component'] =
+    `file:../${baseDir}/${packageName}`;
   await fs.unlink(`./${baseDir}/package.json`);
   await fs.writeFile(
     `./${baseDir}/package.json`,

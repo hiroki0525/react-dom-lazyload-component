@@ -27,4 +27,4 @@ jobs:
           git config --global user.email "$GIT_EMAIL"
           git config --global user.name "hiroki0525"
       - name: Deploy Examples
-        run: npm run deploy:examples
+        run: pnpm deploy:examples
