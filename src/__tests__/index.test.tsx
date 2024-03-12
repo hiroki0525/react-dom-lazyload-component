@@ -19,13 +19,11 @@ describe('LazyLoad', () => {
   window.IntersectionObserver = mockIntersectionObserver;
 
   const rootId = 'rootId';
-  const testId = 'testId';
 
-  type ExcludeChildrenLazyLoadProps = Omit<LazyLoadProps, 'children'>;
+  type ExcludeChildrenLazyLoadProps = Omit<LazyLoadProps<'button'>, 'children'>;
 
   const defaultProps: ExcludeChildrenLazyLoadProps = {
     rootId,
-    'data-testid': testId,
     fallback: invisibleText,
   };
 
@@ -50,15 +48,15 @@ describe('LazyLoad', () => {
     });
 
     describe('no default props', () => {
-      describe('as is span', () => {
-        it('render span', () => {
-          const expectedAs = 'span';
+      describe('as is button', () => {
+        it('render button', () => {
+          const expectedAs = 'button';
           const props: ExcludeChildrenLazyLoadProps = {
             ...defaultProps,
             as: expectedAs,
           };
           render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
-          const element = screen.getByTestId(testId);
+          const element = screen.getByRole(expectedAs);
           expect(element.tagName.toLowerCase()).toBe(expectedAs);
         });
       });

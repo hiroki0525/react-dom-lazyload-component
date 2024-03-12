@@ -6,12 +6,14 @@ import {
   ReactNode,
   Suspense,
   startTransition,
+  ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
 } from 'react';
 
-export type LazyLoadProps = {
+export type LazyLoadProps<T extends ElementType = 'div'> = {
   fallback?: ReactNode;
   children: ReactNode;
-  as?: ElementType;
+  as?: T;
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
@@ -19,11 +21,9 @@ export type LazyLoadProps = {
   suspense?: boolean;
   direction?: 'vertical' | 'horizontal';
   margin?: string;
-  // eslint-disable-next-line
-  [x: string]: any;
-};
+} & ComponentPropsWithoutRef<T>;
 
-export default function LazyLoad({
+export default function LazyLoad<T extends ElementType = 'div'>({
   fallback,
   children,
   forceVisible = false,
@@ -33,12 +33,12 @@ export default function LazyLoad({
   once = true,
   onVisible,
   suspense = false,
-  as: Tag = 'div',
+  as,
   ...props
-}: LazyLoadProps) {
+}: LazyLoadProps<T>) {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
-  const targetRef = useRef<HTMLElement>();
+  const targetRef = useRef<ComponentPropsWithRef<T>>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   if (!isVisible && forceVisible) {
@@ -101,6 +101,7 @@ export default function LazyLoad({
   }, [direction, isVisible, margin, onVisible, once]);
 
   const displayComponent = isVisible ? children : fallback;
+  const Tag = as ?? 'div';
 
   return (
     <Tag ref={targetRef} {...props}>
