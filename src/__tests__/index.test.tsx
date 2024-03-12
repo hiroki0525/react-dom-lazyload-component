@@ -19,13 +19,11 @@ describe('LazyLoad', () => {
   window.IntersectionObserver = mockIntersectionObserver;
 
   const rootId = 'rootId';
-  const testId = 'testId';
 
-  type ExcludeChildrenLazyLoadProps = Omit<LazyLoadProps, 'children'>;
+  type ExcludeChildrenLazyLoadProps = Omit<LazyLoadProps<'button'>, 'children'>;
 
   const defaultProps: ExcludeChildrenLazyLoadProps = {
     rootId,
-    'data-testid': testId,
     fallback: invisibleText,
   };
 
@@ -50,15 +48,15 @@ describe('LazyLoad', () => {
     });
 
     describe('no default props', () => {
-      describe('as is span', () => {
-        it('render span', () => {
-          const expectedAs = 'span';
+      describe('as is button', () => {
+        it('render button', () => {
+          const expectedAs = 'button';
           const props: ExcludeChildrenLazyLoadProps = {
             ...defaultProps,
             as: expectedAs,
           };
           render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
-          const element = screen.getByTestId(testId);
+          const element = screen.getByRole(expectedAs);
           expect(element.tagName.toLowerCase()).toBe(expectedAs);
         });
       });
@@ -75,49 +73,27 @@ describe('LazyLoad', () => {
           expect(getByText(visibleText)).toBeDefined();
         });
       });
-
-      describe('onVisible is specified', () => {
-        const mockOnVisible = jest.fn();
-
-        describe('visible', () => {
-          it('onVisible will be called', () => {
-            const props: ExcludeChildrenLazyLoadProps = {
-              ...defaultProps,
-              forceVisible: true,
-              onVisible: mockOnVisible,
-            };
-            render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
-            expect(mockOnVisible).toHaveBeenCalledTimes(1);
-          });
-        });
-
-        describe('invisible', () => {
-          it('onVisible will not be called', () => {
-            const props: ExcludeChildrenLazyLoadProps = {
-              ...defaultProps,
-              onVisible: mockOnVisible,
-            };
-            render(<LazyLoad {...props}>{visibleText}</LazyLoad>);
-            expect(mockOnVisible).toHaveBeenCalledTimes(0);
-          });
-        });
-      });
     });
   });
 
   describe('rerender', () => {
+    const mockOnVisible = jest.fn();
+
     describe('forceVisible is true', () => {
       it('visible', () => {
+        const baseProps = { ...defaultProps, onVisible: mockOnVisible };
         const { rerender, getByText } = render(
-          <LazyLoad {...defaultProps}>{visibleText}</LazyLoad>
+          <LazyLoad {...baseProps}>{visibleText}</LazyLoad>
         );
         expect(getByText(invisibleText)).toBeDefined();
+        expect(mockOnVisible).toHaveBeenCalledTimes(0);
         const props: ExcludeChildrenLazyLoadProps = {
-          ...defaultProps,
+          ...baseProps,
           forceVisible: true,
         };
         rerender(<LazyLoad {...props}>{visibleText}</LazyLoad>);
         expect(getByText(visibleText)).toBeDefined();
+        expect(mockOnVisible).toHaveBeenCalledTimes(1);
       });
     });
   });

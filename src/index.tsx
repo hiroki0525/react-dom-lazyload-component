@@ -6,12 +6,14 @@ import {
   ReactNode,
   Suspense,
   startTransition,
+  ComponentPropsWithoutRef,
+  ComponentPropsWithRef,
 } from 'react';
 
-export type LazyLoadProps = {
+export type LazyLoadProps<T extends ElementType = 'div'> = {
   fallback?: ReactNode;
   children: ReactNode;
-  as?: ElementType;
+  as?: T;
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
@@ -19,11 +21,9 @@ export type LazyLoadProps = {
   suspense?: boolean;
   direction?: 'vertical' | 'horizontal';
   margin?: string;
-  // eslint-disable-next-line
-  [x: string]: any;
-};
+} & ComponentPropsWithoutRef<T>;
 
-export default function LazyLoad({
+export default function LazyLoad<T extends ElementType = 'div'>({
   fallback,
   children,
   forceVisible = false,
@@ -33,13 +33,19 @@ export default function LazyLoad({
   once = true,
   onVisible,
   suspense = false,
-  as: Tag = 'div',
+  as,
   ...props
-}: LazyLoadProps): JSX.Element {
+}: LazyLoadProps<T>) {
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
-  const targetRef = useRef<HTMLElement>();
+  const targetRef = useRef<ComponentPropsWithRef<T>>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
+
+  if (!isVisible && forceVisible) {
+    setIsVisible(true);
+    onVisible && onVisible();
+  }
+
   const cleanupObserver = (): void => {
     observerRef.current?.disconnect();
     observerRef.current = null;
@@ -52,14 +58,6 @@ export default function LazyLoad({
     const rootElement = document.getElementById(rootId);
     rootElement && (rootRef.current = rootElement);
   }, [rootId]);
-
-  useEffect(() => {
-    setIsVisible(forceVisible);
-  }, [forceVisible]);
-
-  useEffect(() => {
-    isVisible && onVisible && onVisible();
-  }, [isVisible, onVisible]);
 
   useEffect(() => {
     if (observerRef.current) {
@@ -85,6 +83,7 @@ export default function LazyLoad({
         startTransition(() => {
           setIsVisible(true);
         });
+        onVisible && onVisible();
         once && cleanupObserver();
       } else {
         once ||
@@ -99,9 +98,10 @@ export default function LazyLoad({
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [direction, isVisible, margin, once]);
+  }, [direction, isVisible, margin, onVisible, once]);
 
   const displayComponent = isVisible ? children : fallback;
+  const Tag = as ?? 'div';
 
   return (
     <Tag ref={targetRef} {...props}>
