@@ -143,6 +143,9 @@ importers:
 
   examples:
     dependencies:
+      react-dom-lazyload-component:
+        specifier: workspace:*
+        version: link:..
       react-router-dom:
         specifier: ^6.22.3
         version: 6.22.3(react-dom@18.2.0)(react@18.2.0)

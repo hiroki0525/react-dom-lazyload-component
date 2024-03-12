@@ -2,14 +2,10 @@
 
 echo "start examples $1"
 if [ "$1" = "ci" ]; then
-  ./scripts/link-to-examples.sh unlink
-  pnpm install-local-pkg
-  pnpm i -F examples
+  pnpm i -F examples --frozen-lockfile
 else
   # local
-  pnpm uninstall-local-pkg
-  pnpm install -w examples
+  pnpm install -F examples --frozen-lockfile
   pnpm build
-  ./scripts/link-to-examples.sh link
 fi
 pnpm start:examples
