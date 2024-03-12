@@ -1,3 +1,28 @@
+# [5.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.5...v5.0.0) (2024-03-12)
+
+
+### Bug Fixes
+
+* strict LazyLoadProps type ([bf48c51](https://github.com/hiroki0525/react-dom-lazyload-component/commit/bf48c519ef0318429821e1bcd0c77570876ae63b))
+
+
+### Build System
+
+* drop support umd ([2f22bac](https://github.com/hiroki0525/react-dom-lazyload-component/commit/2f22bac81f7a745c145b8911f71023dabecf6875))
+
+
+### Performance Improvements
+
+* build target upgrade ([990b2ad](https://github.com/hiroki0525/react-dom-lazyload-component/commit/990b2ad6793af1ce734bfdfd518c9bdf75529a65))
+* remove unnecessary useEffect ([b2c7ac8](https://github.com/hiroki0525/react-dom-lazyload-component/commit/b2c7ac858b6da735b202268966762faf554cfd67))
+* remove unnecessary useEffect ([1ecdd70](https://github.com/hiroki0525/react-dom-lazyload-component/commit/1ecdd7052a682fc383a1b2ad7a9b1c8cd8c01cb6))
+
+
+### BREAKING CHANGES
+
+* build target upgrade to es2020
+* drop support umd
+
 ## [4.1.5](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.4...v4.1.5) (2023-01-02)
 
 
