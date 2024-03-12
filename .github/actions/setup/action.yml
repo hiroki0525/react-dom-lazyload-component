@@ -12,5 +12,5 @@ runs:
         node-version-file: '.node-version'
         cache: 'pnpm'
     - name: Install Dependencies
-      run: pnpm install -r --frozen-lockfile
+      run: pnpm i -r --frozen-lockfile
       shell: bash
