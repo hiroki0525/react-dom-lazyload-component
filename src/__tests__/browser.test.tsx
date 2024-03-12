@@ -187,6 +187,8 @@ describe('Browser', () => {
       beforeAll(async () => {
         await page.setRequestInterception(true);
         page.on('request', interceptedRequest => {
+          // isInterceptResolutionHandled is not defined in the type definition
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if ((interceptedRequest as any).isInterceptResolutionHandled())
             return;
           const requestUrl = interceptedRequest.url();
