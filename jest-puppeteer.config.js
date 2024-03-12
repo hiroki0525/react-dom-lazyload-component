@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    command: 'pnpm start:examples:ci',
+    command: 'pnpm start:examples',
     port: 3001,
     host: 'localhost',
     protocol: 'http',

@@ -21,8 +21,6 @@
   "sideEffects": false,
   "scripts": {
     "start:examples": "pnpm -F examples start",
-    "start:examples:local": "./scripts/start-examples.sh",
-    "start:examples:ci": "./scripts/start-examples.sh ci",
     "deploy:examples": "pnpm -F examples deploy",
     "prebuild": "rm -rf dist",
     "build": "rollup -c",
