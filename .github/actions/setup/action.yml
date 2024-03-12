@@ -14,3 +14,6 @@ runs:
     - name: Install Dependencies
       run: pnpm i -r --frozen-lockfile
       shell: bash
+    - name: Build
+      run: pnpm build
+      shell: bash

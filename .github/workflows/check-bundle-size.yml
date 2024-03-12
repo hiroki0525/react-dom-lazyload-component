@@ -14,8 +14,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - uses: ./.github/actions/setup
-      - name: Build
-        run: pnpm build
       - name: Run BundleMon
         run: ./node_modules/.bin/bundlemon
         env:

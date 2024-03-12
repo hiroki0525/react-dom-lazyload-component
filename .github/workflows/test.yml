@@ -17,5 +17,3 @@ jobs:
       - name: Test
         run: |
           pnpm t && pnpm lint && pnpm prettier
-      - name: Build
-        run: pnpm build
