@@ -20,11 +20,7 @@ const App = () => (
   </StrictMode>
 );
 
-const rootElement = document.getElementById('root');
-
-if (!rootElement) {
-  throw new Error('root element cannot be found.');
-}
+const rootElement = document.getElementById('root')!;
 
 const root = createRoot(rootElement);
 
