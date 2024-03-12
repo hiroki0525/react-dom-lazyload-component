@@ -5,13 +5,10 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 const name = 'ReactDomLazyloadComponent';
 const input = 'src/index.tsx';
-const outputFormats = ['cjs', 'umd', 'es'];
+const outputFormats = ['cjs', 'es'];
 
-const buildTsConfig = ({ format, sourceMap }) => {
-  const extraConfig =
-    format === 'umd'
-      ? { compilerOptions: { target: 'es5', sourceMap } }
-      : { compilerOptions: { sourceMap } };
+const buildTsConfig = ({ sourceMap }) => {
+  const extraConfig = { compilerOptions: { sourceMap } };
   return typescript({ ...tsConfigJson, ...extraConfig });
 };
 
@@ -29,7 +26,6 @@ const productionConfigs = outputFormats.map(format => ({
   plugins: [
     peerDepsExternal(),
     buildTsConfig({
-      format,
       sourceMap: tsConfigJson.compilerOptions.sourceMap,
     }),
     terser(),
@@ -48,7 +44,7 @@ const developmentConfigs = outputFormats.map(format => ({
       name,
     },
   ],
-  plugins: [peerDepsExternal(), buildTsConfig({ format, sourceMap: false })],
+  plugins: [peerDepsExternal(), buildTsConfig({ sourceMap: false })],
 }));
 
 export default [...productionConfigs, ...developmentConfigs];

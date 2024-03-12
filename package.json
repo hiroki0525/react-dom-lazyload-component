@@ -129,9 +129,6 @@
         "path": "cjs/index.js"
       },
       {
-        "path": "umd/index.js"
-      },
-      {
         "path": "index.js"
       }
     ]
