@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v5.0.0...v5.1.0) (2024-04-28)
+
+
+### Features
+
+* add `useLazyLoad` hook ([6acc295](https://github.com/hiroki0525/react-dom-lazyload-component/commit/6acc295b24e3361c83c5c95b627c41f2da15c7ac))
+
 # [5.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v4.1.5...v5.0.0) (2024-03-12)
 
 
