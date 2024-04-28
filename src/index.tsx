@@ -10,35 +10,35 @@ import {
   ComponentPropsWithRef,
 } from 'react';
 
-export type LazyLoadProps<T extends ElementType = 'div'> = {
-  fallback?: ReactNode;
-  children: ReactNode;
-  as?: T;
+export type LazyLoadParams = {
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
   onVisible?: () => void;
-  suspense?: boolean;
   direction?: 'vertical' | 'horizontal';
   margin?: string;
-} & ComponentPropsWithoutRef<T>;
+};
 
-export default function LazyLoad<T extends ElementType = 'div'>({
-  fallback,
-  children,
-  forceVisible = false,
-  rootId,
-  direction = 'vertical',
-  margin = '0px',
-  once = true,
-  onVisible,
-  suspense = false,
-  as,
-  ...props
-}: LazyLoadProps<T>) {
+export type LazyLoadProps<T extends ElementType = 'div'> = {
+  fallback?: ReactNode;
+  children: ReactNode;
+  as?: T;
+  suspense?: boolean;
+} & ComponentPropsWithoutRef<T> &
+  LazyLoadParams;
+
+export function useLazyLoad(params?: LazyLoadParams) {
+  const {
+    forceVisible = false,
+    rootId,
+    direction = 'vertical',
+    margin = '0px',
+    once = true,
+    onVisible,
+  } = params ?? {};
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
-  const targetRef = useRef<ComponentPropsWithRef<T>>(null);
+  const targetRef = useRef<ComponentPropsWithRef<ElementType>>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   if (!isVisible && forceVisible) {
@@ -56,7 +56,9 @@ export default function LazyLoad<T extends ElementType = 'div'>({
       return;
     }
     const rootElement = document.getElementById(rootId);
-    rootElement && (rootRef.current = rootElement);
+    if (rootElement) {
+      rootRef.current = rootElement;
+    }
   }, [rootId]);
 
   useEffect(() => {
@@ -100,11 +102,39 @@ export default function LazyLoad<T extends ElementType = 'div'>({
     return cleanupObserver;
   }, [direction, isVisible, margin, onVisible, once]);
 
+  return {
+    ref: targetRef,
+    isVisible,
+  };
+}
+
+export default function LazyLoad<T extends ElementType = 'div'>({
+  fallback,
+  children,
+  forceVisible,
+  rootId,
+  direction,
+  margin,
+  once,
+  onVisible,
+  suspense = false,
+  as,
+  ...props
+}: LazyLoadProps<T>) {
+  const { ref, isVisible } = useLazyLoad({
+    forceVisible,
+    rootId,
+    direction,
+    margin,
+    once,
+    onVisible,
+  });
+
   const displayComponent = isVisible ? children : fallback;
   const Tag = as ?? 'div';
 
   return (
-    <Tag ref={targetRef} {...props}>
+    <Tag ref={ref} {...props}>
       {suspense ? (
         <Suspense fallback={fallback}>{displayComponent}</Suspense>
       ) : (
