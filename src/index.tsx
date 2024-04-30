@@ -14,7 +14,6 @@ export type LazyLoadParams = {
   forceVisible?: boolean;
   rootId?: string;
   once?: boolean;
-  onVisible?: () => void;
   direction?: 'vertical' | 'horizontal';
   margin?: string;
 };
@@ -24,6 +23,7 @@ export type LazyLoadProps<T extends ElementType = 'div'> = {
   children: ReactNode;
   as?: T;
   suspense?: boolean;
+  onVisible?: () => void;
 } & ComponentPropsWithoutRef<T> &
   LazyLoadParams;
 
@@ -34,7 +34,6 @@ export function useLazyLoad(params?: LazyLoadParams) {
     direction = 'vertical',
     margin = '0px',
     once = true,
-    onVisible,
   } = params ?? {};
   const [isVisible, setIsVisible] = useState(forceVisible);
   const rootRef = useRef<HTMLElement>();
@@ -43,7 +42,6 @@ export function useLazyLoad(params?: LazyLoadParams) {
 
   if (!isVisible && forceVisible) {
     setIsVisible(true);
-    onVisible && onVisible();
   }
 
   const cleanupObserver = (): void => {
@@ -85,7 +83,6 @@ export function useLazyLoad(params?: LazyLoadParams) {
         startTransition(() => {
           setIsVisible(true);
         });
-        onVisible && onVisible();
         once && cleanupObserver();
       } else {
         once ||
@@ -100,7 +97,7 @@ export function useLazyLoad(params?: LazyLoadParams) {
     );
     observerRef.current.observe(el);
     return cleanupObserver;
-  }, [direction, isVisible, margin, onVisible, once]);
+  }, [direction, isVisible, margin, once]);
 
   return {
     ref: targetRef,
@@ -121,14 +118,20 @@ export default function LazyLoad<T extends ElementType = 'div'>({
   as,
   ...props
 }: LazyLoadProps<T>) {
+  const prevVisible = useRef<boolean>();
   const { ref, isVisible } = useLazyLoad({
     forceVisible,
     rootId,
     direction,
     margin,
     once,
-    onVisible,
   });
+  if (!prevVisible.current && isVisible && onVisible) {
+    onVisible();
+  }
+  if (prevVisible.current !== isVisible) {
+    prevVisible.current = isVisible;
+  }
 
   const displayComponent = isVisible ? children : fallback;
   const Tag = as ?? 'div';

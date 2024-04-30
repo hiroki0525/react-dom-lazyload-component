@@ -7,7 +7,7 @@ Lazyload your Components, Images or anything else. You can improve performance s
 ## Features
 
 - ⚡️ Optimized performance: Reuses Intersection Observer instances where possible
-- 💥 Minimum bundle: Around ~1.3kB
+- 💥 Minimum bundle: Around ~1kB
 - 🛠 TypeScript: It'll fit right into your existing TypeScript project
 - 💡 Easy to understand: You don't have to know about complex Intersection Observer API
 - 😽 React 18: Optimized using `Suspense` and `startTransition`
@@ -71,7 +71,6 @@ const App = () => {
 | margin       | No       | string                         | '0px'      | Margin around the root element. For examples, if `direction` is `vertical` and `margin` is `200px`, [IntersectionObserver.thresholds](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/thresholds) is `200px 0px`.                                                             |
 | forceVisible | No       | boolean                        | false      | You can forces the component to display regardless of whether the element is visible in the viewport.                                                                                                                                                                                               |
 | once         | No       | boolean                        | true       | You can control whether the element in the viewport is shown at once or not.                                                                                                                                                                                                                        |
-| onVisible    | No       | () => void                     | -          | Callback function called when the component has been visible.                                                                                                                                                                                                                                       |
 
 The return value is `ref` and `isVisible`.
 You can use `ref` to attach to the element you want to observe, and `isVisible` to determine if the element is visible in the viewport.
@@ -86,6 +85,7 @@ You can specify the following props in addition to the `useLazyLoad` props.
 | fallback     | No       | ReactNode                      | -          | Component is rendered when it is not in the viewport.                                                                                                                                                                                                                                               |
 | as           | No       | string                         | div        | You can specify tag name to `LazyLoad` component.                                                                                                                                                                                                                                                   |
 | suspense     | No       | boolean                        | false      | You can use `React.Suspense` .                                                                                                                                                                                                                                                                      |
+| onVisible    | No       | () => void                     | -          | Callback function called when the component has been visible.                                                                                                                                                                                                                                       |
 
 `LazyLoad` also can be received props like `className`, `style` and `id`.
 
