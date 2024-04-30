@@ -54,21 +54,6 @@ describe('index', () => {
       });
     });
 
-    describe('rerender', () => {
-      const mockOnVisible = jest.fn();
-
-      describe('forceVisible is true', () => {
-        it('called onVisible', () => {
-          const { rerender } = render(
-            <TestComponent onVisible={mockOnVisible} />
-          );
-          expect(mockOnVisible).toHaveBeenCalledTimes(0);
-          rerender(<TestComponent forceVisible onVisible={mockOnVisible} />);
-          expect(mockOnVisible).toHaveBeenCalledTimes(1);
-        });
-      });
-    });
-
     describe('unmount', () => {
       it('called IntersectionObserver.disconnect ', () => {
         const { unmount } = render(<TestComponent />);
@@ -137,6 +122,32 @@ describe('index', () => {
             const element = getByText(visibleText);
             expect(element.tagName.toLowerCase()).toBe('div');
           });
+        });
+      });
+    });
+
+    describe('rerender', () => {
+      const mockOnVisible = jest.fn();
+
+      describe('forceVisible is true', () => {
+        it('called onVisible', () => {
+          const propsWithoutForceVisible: ExcludeChildrenLazyLoadProps = {
+            ...defaultProps,
+            onVisible: mockOnVisible,
+          };
+          const { rerender } = render(
+            <LazyLoad {...propsWithoutForceVisible}>{visibleText}</LazyLoad>
+          );
+          expect(mockOnVisible).toHaveBeenCalledTimes(0);
+          const propsWithForceVisible: ExcludeChildrenLazyLoadProps = {
+            ...defaultProps,
+            onVisible: mockOnVisible,
+            forceVisible: true,
+          };
+          rerender(
+            <LazyLoad {...propsWithForceVisible}>{visibleText}</LazyLoad>
+          );
+          expect(mockOnVisible).toHaveBeenCalledTimes(1);
         });
       });
     });
