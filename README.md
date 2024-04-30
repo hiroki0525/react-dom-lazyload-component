@@ -7,7 +7,7 @@ Lazyload your Components, Images or anything else. You can improve performance s
 ## Features
 
 - ⚡️ Optimized performance: Reuses Intersection Observer instances where possible
-- 💥 Minimum bundle: Around ~1.3kB
+- 💥 Minimum bundle: Around ~1kB
 - 🛠 TypeScript: It'll fit right into your existing TypeScript project
 - 💡 Easy to understand: You don't have to know about complex Intersection Observer API
 - 😽 React 18: Optimized using `Suspense` and `startTransition`
