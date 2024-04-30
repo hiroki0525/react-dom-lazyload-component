@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v5.1.0...v6.0.0) (2024-04-30)
+
+
+### Performance Improvements
+
+* remove `onVisible` from `useLazyLoad` ([0e88210](https://github.com/hiroki0525/react-dom-lazyload-component/commit/0e88210fdee02360408d8bcf09c83046ff8830a5))
+
+
+### BREAKING CHANGES
+
+* remove `onVisible` from `useLazyLoad` because the responsibility of the function should not include it. Please use `LazyLoad` component or control using `isVisible`
+
 # [5.1.0](https://github.com/hiroki0525/react-dom-lazyload-component/compare/v5.0.0...v5.1.0) (2024-04-28)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "react-dom-lazyload-component",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "description": "React Lazy Load Component for your Website Performance🚀",
   "main": "dist/cjs/index.js",
   "module": "dist/index.js",
